@@ -43,6 +43,10 @@ class LaravelDockerServiceProvider extends ServiceProvider
 
       # Logs.
       "$src/logs/.gitignore"                => "$dst/logs/.gitignore",
+
+      # Helper scripts.
+      "$src/scripts/install.sh"             => "$dst/scripts/install.sh",
+      "$src/scripts/docker-restart.sh"      => "$dst/scripts/docker-restart.sh",
     ], 'laravel-docker');
   }
 
