@@ -3,9 +3,21 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+# models
+use App\Models\Project\Project;
+use App\Models\Timesheet\TimesheetLog;
+
+# relationships
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+# traits
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+
+# facades
 use Illuminate\Support\Str;
 
 class User extends Authenticatable
@@ -19,7 +31,8 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'password',
     ];
@@ -54,7 +67,30 @@ class User extends Authenticatable
     {
         return Str::of($this->name)
             ->explode(' ')
-            ->map(fn (string $name) => Str::of($name)->substr(0, 1))
+            ->map(fn(string $name) => Str::of($name)->substr(0, 1))
             ->implode('');
+    }
+
+
+    # relationships
+
+    /**
+     * Timesheet logs added by the current user
+     *
+     * @return HasMany<TimesheetLog, User>
+     */
+    public function timesheetLogs(): HasMany
+    {
+        return $this->hasMany(TimesheetLog::class);
+    }
+
+    /**
+     * Assigned projects
+     *
+     * @return BelongsToMany<Project, User>
+     */
+    public function assignedProjects(): BelongsToMany
+    {
+        return $this->belongsToMany(Project::class);
     }
 }
