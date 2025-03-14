@@ -5,15 +5,15 @@ set -eux
 # Removed cached css/js/json files.
 function remove_compiled_files()
 {
-  find public/css/* ! -type f -exec rm -f {} +
-  find public/js/* ! -name *.min.js -type f -exec rm -f {} +
+  # find public/css/* ! -type f -exec rm -f {} +
+  # find public/js/* ! -name *.min.js -type f -exec rm -f {} +
 }
 
 # Install composer & npm packages for development.
 function install_npm_and_composer_packges_for_dev()
 {
   composer install
-  npm install && npm run dev
+  npm install && npm run build
 }
 
 # Install composer & npm packages for production. 

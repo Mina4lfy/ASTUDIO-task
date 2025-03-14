@@ -43,3 +43,5 @@ else
 fi
 
 docker compose up -d
+
+docker exec -it laravel-docker-app sh || docker logs laravel-docker-app || exit 1
