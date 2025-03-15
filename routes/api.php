@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 # Controllers.
-use App\Http\Controllers\Projects\ProjectsController;
+use App\Http\Controllers\API\Project\ProjectsController;
 
 /*
 |--------------------------------------------------------------------------
