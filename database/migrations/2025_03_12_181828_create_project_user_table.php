@@ -14,13 +14,15 @@ return new class extends Migration {
         Schema::create('project_user', function (Blueprint $table) {
             $table->id();
 
-            # assignee (user)
+            # user (assignee)
             $table->unsignedBigInteger('user_id')->comment('User that is assigned to the referenced `project_id`.');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 
             # project
             $table->unsignedBigInteger('project_id')->comment('Project to which the user is assigned to.');
             $table->foreign('project_id')->references('id')->on('projects')->onUpdate('cascade')->onDelete('cascade');
+
+            $table->unique(['user_id', 'project_id']);
 
             $table->timestamps();
         });
