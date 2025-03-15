@@ -23,8 +23,8 @@ return [
     // Attributes Models
     'models' => [
 
-        'attribute' => \Rinvex\Attributes\Models\Attribute::class,
-        'attribute_entity' => \Rinvex\Attributes\Models\AttributeEntity::class,
+        'attribute' => \App\Models\EAV\Attribute::class,
+        'attribute_entity' => \App\Models\EAV\AttributeEntity::class,
 
     ],
 
