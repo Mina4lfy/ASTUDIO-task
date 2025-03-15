@@ -5,7 +5,7 @@
 *.gitkeep
 
 # markdown files
-README.md
+*.md
 
 # env
 .env.example
@@ -22,11 +22,11 @@ README.md
 
 # dockerfiles
 ./devops
-Dockerfile*
 docker-compose*
 
 # storage files
 /storage/app/public/
+/storage/debugbar/
 
 # cached files
 /bootstrap/cache/data
@@ -35,4 +35,3 @@ docker-compose*
 # assets (CSS, JS)
 /public/**/*.css
 /public/**/*.js
-/public/**/*.js.LICENSE.txt

@@ -21,7 +21,8 @@ RUN apk update \
     unzip \
     nodejs \
     npm \
-  && docker-php-ext-install pdo_mysql mysqli mbstring exif pcntl bcmath gd calendar zip opcache
+  && docker-php-ext-install pdo_mysql mysqli mbstring exif pcntl bcmath gd calendar zip
+# opcache
 
 # Clear cache
 RUN rm -rf /var/cache/apk/*
@@ -39,16 +40,12 @@ WORKDIR /var/www/html
 
 # Create user  and set up home directory
 RUN adduser -D -u 1000 -G www-data laravel \
-    && mkdir -p /home/laravel/.composer \
-    && chown -R laravel:www-data /home/laravel
+  && mkdir -p /home/laravel/.composer \
+  && chown -R laravel:www-data /home/laravel
 
 # Copy source code
 COPY . .
 
-# Copy & enable the bolt.so file into the container
-# COPY ./docker/php/ext/bolt.so /usr/local/lib/php/extensions/no-debug-non-zts-20190902/
-# RUN docker-php-ext-enable bolt
-# RUN echo "extension=php-bolt.so" > /usr/local/etc/php/conf.d/php-bolt.ini
 # Install npm dependencies
 # RUN curl -o nodejs.tar.xz https://nodejs.org/dist/latest-v13.x/node-v13.14.0-linux-x64.tar.xz \
 #   && tar -xvf nodejs.tar.xz \
@@ -58,10 +55,8 @@ COPY . .
 # ENV PATH="/usr/local/node/bin:${PATH}"
 # RUN echo "source ~/.bashrc" >> ~/.bash_profile
 
-# Run cron (currently disabled due to having a running supervisord service)
-# RUN echo "* * * * * /usr/local/bin/php /var/www/html/artisan schedule:run >> /dev/null 2>&1" > /etc/cron.d/cron && chmod 0644 /etc/cron.d/cron
-
 USER laravel
+
 # Expose ports: 80, 443, and 9000 (fast-cgi)
 EXPOSE 80 443 9000
 

@@ -5,8 +5,8 @@ set -eux
 # Removed cached css/js/json files.
 function remove_compiled_files()
 {
-  # find public/css/* ! -type f -exec rm -f {} +
-  # find public/js/* ! -name *.min.js -type f -exec rm -f {} +
+  find public/css/* ! -type f -exec rm -f {} +
+  find public/js/* ! -name *.min.js -type f -exec rm -f {} +
 }
 
 # Install composer & npm packages for development.
@@ -30,17 +30,17 @@ if [ ! "$#" -eq 0 ]; then
     case $opt in
 
       --remove-compiled)
-        remove_compiled_files
+        # remove_compiled_files
       ;;
 
       --dev)
-        remove_compiled_files
+        # remove_compiled_files
         install_npm_and_composer_packges_for_dev
       ;;
 
       --prod)
         running_for_production=true
-        remove_compiled_files
+        # remove_compiled_files
         install_npm_and_composer_packges_for_prod
       ;;
 

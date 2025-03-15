@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "996baa5dc3b0b8a3695e8b332137e37c",
+    "content-hash": "c8e1be0135b7570208d42a25ec38b9ca",
     "packages": [
         {
             "name": "brick/math",
@@ -2532,49 +2532,6 @@
                 "source": "https://github.com/rinvex/laravel-support"
             },
             "time": "2025-03-14T18:27:05+00:00"
-        },
-        {
-            "name": "minaalfy/laravel-docker",
-            "version": "dev-main",
-            "dist": {
-                "type": "path",
-                "url": "packages/laravel-docker",
-                "reference": "ecc93934e980ee4cebf071de29865bee22fd99c1"
-            },
-            "require": {
-                "laravel/framework": "^12.0",
-                "php": "^8.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Minaalfy\\LaravelDocker\\LaravelDockerServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Minaalfy\\LaravelDocker\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mina Alfy",
-                    "email": "minaalfy8@gmail.com"
-                }
-            ],
-            "description": "Adds docker support for Laravel projects including the following services: MariaDB, Redis, Supervisord, and PHP/Laravel.",
-            "keywords": [
-                "docker",
-                "laravel"
-            ],
-            "transport-options": {
-                "relative": true
-            }
         },
         {
             "name": "monolog/monolog",
@@ -10267,9 +10224,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "minaalfy/laravel-docker": 20
-    },
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
