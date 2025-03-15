@@ -65,10 +65,25 @@ class User extends Authenticatable
      */
     public function initials(): string
     {
-        return Str::of($this->name)
+        return Str::of($this->first_name)
             ->explode(' ')
-            ->map(fn(string $name) => Str::of($name)->substr(0, 1))
+            ->map(fn(string $first_name) => Str::of($first_name)->substr(0, 1))
             ->implode('');
+    }
+
+
+    # appends
+
+    /**
+     * {@inheritDoc}
+     */
+    protected $appends = [
+        'name'
+    ];
+
+    public function getNameAttribute(): string
+    {
+        return "{$this->first_name} {$this->last_name}";
     }
 
 
