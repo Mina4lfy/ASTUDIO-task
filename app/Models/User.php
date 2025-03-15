@@ -78,7 +78,7 @@ class User extends Authenticatable
      * {@inheritDoc}
      */
     protected $appends = [
-        'name'
+        'name',
     ];
 
     public function getNameAttribute(): string

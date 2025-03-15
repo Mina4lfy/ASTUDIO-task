@@ -1,0 +1,82 @@
+<?php
+
+namespace {{ namespace }};
+
+# controllers.
+use {{ rootNamespace }}Http\Controllers\Controller;
+
+# requests.
+use {{ rootNamespace }}Http\Requests\Request;
+
+# models.
+use {{ namespacedModel }};
+
+# resources.
+use App\Http\Resources\BaseResource;
+
+class {{ class }} extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @param \App\Http\Requests\Request $request
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function index(Request $request)
+    {
+        $query = {{ model }}::query();
+
+        ${{ modelVariable }}s = $query->paginate($request->per_page);
+
+        return BaseResource::collection(${{ modelVariable }}s);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param \App\Models\BaseModel $model
+     * @return BaseResource
+     */
+    public function show({{ model }} ${{ modelVariable }})
+    {
+        return BaseResource::make(${{ modelVariable }});
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param \App\Http\Requests\Project\ProjectRequest $request
+     * @return BaseResource
+     */
+    public function store({{ storeRequest }} $request)
+    {
+        ${{ modelVariable }} = {{ model }}::create($request->all());
+
+        return $this->show(${{ modelVariable }});
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \App\Http\Requests\Project\ProjectRequest $request
+     * @param \App\Models\BaseModel $model
+     * @return BaseResource
+     */
+    public function update({{ updateRequest }} $request, {{ model }} ${{ modelVariable }})
+    {
+        ${{ modelVariable }}->update($request->all());
+
+        return $this->show(${{ modelVariable }});
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param \App\Models\BaseModel $model
+     * @return BaseResource
+     */
+    public function destroy({{ model }} ${{ modelVariable }})
+    {
+        return response()->json(['data' => null]);
+    }
+}

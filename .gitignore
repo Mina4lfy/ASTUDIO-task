@@ -21,3 +21,7 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+
+# stubs
+/stubs/*
+!/stubs/controller.model.api.stub
