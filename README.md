@@ -2,19 +2,27 @@
 
 <br/>
 
-## Get Started
+## #1 Get Started
 
 ### Local Server (Xampp/Wamp/..)
-1. run `cd <YOUR LOCAL SERVER ROOT DIRECTORY>`
+
+1. Move to your local server directory: `cd <YOUR LOCAL SERVER ROOT DIRECTORY>`
     - xampp : `C:\xampp\htdocs`
-    - wamp  : `C:\wamp64\www`
+    - wamp : `C:\wamp64\www`
     - .. and so on
-2. run `git clone https://github.com/Mina4lfy/astudio-task astudio-task`
-3. run `cd astudio-task`
-4. run `composer install` (preferred to run using bash)
-5. run `npm install; npm run build`
-6. run `xcopy .env.example .env`
-7. <span id="configure-dotenv">Configure `.env` file with your new settings</span>
+2. Run
+    ```
+    git clone git@github.com:Mina4lfy/ASTUDIO-task.git astudio-task
+    cd astudio-task
+
+    composer install
+    npm install; npm run build
+
+    xcopy .env.example .env
+    php artisan key:generate
+    php artisan storage:link    
+    ```
+3. <span id="configure-dotenv">Configure `.env` file with your new settings</span>
     - Modify your database connection creds:
         ```
         DB_CONNECTION=mysql
@@ -23,12 +31,17 @@
         DB_DATABASE=astudio
         DB_USERNAME=root
         DB_PASSWORD=
-8. run `php artisan key:generate`
-9. run `php artisan storage:link`
+        ```
+8. Migrate database: `php artisan migrate:fresh --seed`.
 
 ### Docker
-1. Simply run: `./devops/scripts/docker-restart.sh`. It accepts one of the following options:
-    - `--volumes` ~ removes the persistent volumes.
-    - `--hard` ~ removes the local images, volumes, networks, etc. and then bring new images and containers up again.
-    - `--reinstall` ~ removes all existing images, volumes, networks, and do a fresh installation.
-2. You will be inside the `app` container. When first used, you need to install the app using: `./devops/scripts/install.sh`.
+
+Simply run: `./devops/scripts/docker-restart.sh --reinstall`.<br/>
+You may need to change the following ports or versions in `.env`:
+```
+DOCKER_APPSERVER_PORT="80"
+DOCKER_DATABASE_PORT="3306"
+DOCKER_DBADMIN_PORT="88"
+DOCKER_APP_VERSION="1.0.0"
+DOCKER_PHP_VERSION="8.2"
+```
