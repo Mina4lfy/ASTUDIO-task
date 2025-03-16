@@ -15,12 +15,12 @@ class ProjectResource extends BaseResource
         return [
             'id'                => $this->id,
             'name'              => $this->name,
-            'status'            => $this->status,
-            'assignees'         => ProjectAssigneeResource::collection($this->whenLoaded('assignees')),
-            'assignees_count'   => $this->whenCounted('assignees'),
             'department'        => $this->department,
+            'status'            => $this->status,
             'start_date'        => $this->start_date,
             'end_date'          => $this->end_date,
+            'assignees'         => ProjectAssigneeResource::collection($this->whenLoaded('assignees')),
+            'assignees_count'   => $this->whenCounted('assignees'),
         ];
     }
 }

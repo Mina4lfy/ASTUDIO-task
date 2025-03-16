@@ -4,7 +4,7 @@ namespace App\Http\Requests\Project;
 
 use App\Http\Requests\Request as BaseRequest;
 use App\Models\Project\Project;
-use App\Models\EAV\Type\Common\Option;
+use App\Enum\ProjectStatus;
 
 class ProjectRequest extends BaseRequest
 {
@@ -21,12 +21,6 @@ class ProjectRequest extends BaseRequest
     public function prepareForValidation(): void
     {
         $this->project = $this->route('project');
-
-        # Cast status: `attributes_options.content` to `attributes_options.id`.
-        $this->merge([
-            'status_name' => $status = $this->status,
-            'status' => $status ? Option::where('content', $status)->first()?->id ?? -1 : -1,
-        ]);
     }
 
     /**
@@ -40,17 +34,18 @@ class ProjectRequest extends BaseRequest
             'name' => [
                 $requiredOnCreate,
                 'string',
-                'max:255',
+                'max:255'
             ],
             'status' => [
                 $requiredOnCreate,
-                'numeric',
-                'exists:' . config('rinvex.attributes.tables.attributes_options') . ',id',
+                'string',
+                'max:255',
+                ProjectStatus::validationRule(),
             ],
             'department' => [
                 $requiredOnCreate,
-                'string',
-                'max:255',
+                'numeric',
+                'exists:' . config('rinvex.attributes.tables.attributes_options') . ',id',
             ],
             'start_date' => [
                 'nullable',

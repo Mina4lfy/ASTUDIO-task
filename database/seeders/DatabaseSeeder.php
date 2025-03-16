@@ -37,14 +37,7 @@ class DatabaseSeeder extends Seeder
      *
      * @const array
      */
-    private const PROJECT_DEPARTMENTS = ['Department 1', 'Department 2', 'Department 3'];
-
-    /**
-     * Available options for project statuses. (select attribute)
-     *
-     * @const array
-     */
-    private const PROJECT_STATUSES = ['pending', 'in-progress', 'finished', 'archived'];
+    private const PROJECT_DEPARTMENTS = ['Software Development (1)', 'Marketing (2)', 'Security (3)'];
 
 
     # Runer
@@ -106,27 +99,17 @@ class DatabaseSeeder extends Seeder
     private function seedAttributes(): Collection
     {
         $attributes[] = $departmentAttribute = app('rinvex.attributes.attribute')->updateOrCreate([
-            'slug' => 'status',
+            'slug' => 'department',
         ], [
-            'description' => 'Project status. (pending/in-progress/finished/archived)',
+            'description' => 'Department that this project belongs to.',
             'type' => 'select',
-            'name' => 'Status',
+            'name' => 'Department',
             'is_required' => true,
             'entities' => [Project::class],
         ]);
 
         # Add department options.
-        $departmentAttribute->addOptions(static::PROJECT_STATUSES);
-
-        $attributes[] = app('rinvex.attributes.attribute')->updateOrCreate([
-            'slug' => 'department',
-        ], [
-            'description' => 'Department that this project belongs to.',
-            'type' => 'text',
-            'name' => 'Department',
-            'is_required' => true,
-            'entities' => [Project::class],
-        ]);
+        $departmentAttribute->addOptions(static::PROJECT_DEPARTMENTS);
 
         $attributes[] = app('rinvex.attributes.attribute')->updateOrCreate([
             'slug' => 'start_date',
@@ -159,8 +142,7 @@ class DatabaseSeeder extends Seeder
     {
         foreach ($projects as $project) {
             $project
-                ->setAttribute('department', fake()->randomElement(static::PROJECT_DEPARTMENTS))
-                ->setAttribute('status', rand(1, count(static::PROJECT_STATUSES)))
+                ->setAttribute('department', rand(1, count(static::PROJECT_DEPARTMENTS)))
                 ->setAttribute('start_date', fake()->date())
                 ->setAttribute('end_date', fake()->date())
                 ->save();
