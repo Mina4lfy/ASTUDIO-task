@@ -54,7 +54,7 @@ class TimesheetLog extends BaseModel
 
             'project_id'    => fn($q, $id) => $q->where('project_id', $id),
 
-            'assignee_id'   => fn($q, $id) => $q->where('user_id', $id),
+            'user_id'       => fn($q, $id) => $q->where('user_id', $id),
 
             'task_name'     => fn($q, $value) => $q->where('task_name', 'like', "%$value%"),
 

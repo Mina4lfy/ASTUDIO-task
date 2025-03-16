@@ -11,6 +11,7 @@
     - wamp : `C:\wamp64\www`
     - .. and so on
 2. Run
+
     ```
     git clone git@github.com:Mina4lfy/ASTUDIO-task.git astudio-task
     cd astudio-task
@@ -25,6 +26,7 @@
     php artisan passport:keys --force
     php artisan passport:client --password --no-interaction
     ```
+
 3. <span id="configure-dotenv">Configure `.env` file with your new settings</span>
     - Modify your database connection creds:
         ```
@@ -35,12 +37,13 @@
         DB_USERNAME=root
         DB_PASSWORD=
         ```
-8. Migrate database: `php artisan migrate:fresh --seed`.
+4. Migrate database: `php artisan migrate:fresh --seed`.
 
 ### Docker
 
 Simply run: `./devops/scripts/docker-restart.sh --reinstall`.<br/>
 <i>You may need to change the following ports or versions in `.env`:</i>
+
 ```
 DOCKER_APPSERVER_PORT="80"
 DOCKER_DATABASE_PORT="3306"
@@ -54,3 +57,9 @@ DOCKER_PHP_VERSION="8.2"
 After the installation script is finished, copy the client id and secret to your `.env` vars as follows.
 ![image](https://github.com/user-attachments/assets/23dd3806-6863-4f2e-9c37-6b202f2c6f90)
 
+<br/>
+
+## #2 API Documentation
+
+Sorry, not a Swagger fan! You can import the Postman collection from `docs/postman/postman-collection.json` and environment, `docs/postman/postman-environment.json`.<br/>
+Documentation is accessible at <a href="https://documenter.getpostman.com/view/40194412/2sAYkBtMtV">https://documenter.getpostman.com/view/40194412/2sAYkBtMtV</a>.

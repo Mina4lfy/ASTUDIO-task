@@ -28,8 +28,10 @@ class TimesheetLogsController extends Controller
     public function index(Request $request, ?Project $project = null)
     {
         $query = $project ? $project->timesheetLogs() : TimesheetLog::query();
-
         $query->with('user');
+
+        # Foribly filter results by current user id requesting the resource.
+        $request->merge(['user_id' => $request->user()->id]);
 
         $query = TimesheetLog::search($request->filter, $query);
 
@@ -85,9 +87,10 @@ class TimesheetLogsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param \App\Models\BaseModel $model
+     * @param \App\Http\Requests\Timesheet\TimesheetLogRequest $request
      * @return TimesheetLogResource
      */
-    public function destroy(TimesheetLog $timesheetLog)
+    public function destroy(TimesheetLog $timesheetLog, TimesheetLogRequest $request)
     {
         $timesheetLog->delete();
 

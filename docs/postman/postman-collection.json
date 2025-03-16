@@ -1,0 +1,725 @@
+{
+	"info": {
+		"_postman_id": "577d4adf-ad5d-4b50-809f-3f986018c24f",
+		"name": "ASTUDIO Recruitment Task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40194412"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Passport Tokens",
+					"item": [
+						{
+							"name": "Request access token",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "{{passportClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "{{passportClientSecret}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "{{username}}",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "*",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/oauth/token",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"oauth",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Refresh token",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "grant_type",
+											"value": "refresh_token",
+											"type": "text"
+										},
+										{
+											"key": "refresh_token",
+											"value": "{{passportRefreshToken}}",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "{{passportClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "{{passportClientSecret}}",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "*",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/oauth/token",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"oauth",
+										"token"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Generate an access token. You must have the `client-id` and `client-secret`.\n\nCurrently, authentication is supported using `username` and `password`."
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "first_name",
+									"value": "{{firstName}}",
+									"description": "* User's first name.",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "{{last_name}}",
+									"description": "* User's last/family name.",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "{{email}}",
+									"description": "* User email address to be then used for login.",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"description": "* Password. (min: 8 characters)",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "{{password}}",
+									"description": "* Same as `Password` for confirmation.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/{{version}}/auth/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"auth",
+								"register"
+							]
+						},
+						"description": "Create a new user."
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "{{email}}",
+									"description": "* User email address to be then used for login.",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"description": "* Password. (min: 8 characters)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/{{version}}/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"auth",
+								"login"
+							]
+						},
+						"description": "Login with user creds, i.e. `username` and `password`, to obtain your access token."
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/{{version}}/auth/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"auth",
+								"logout"
+							]
+						},
+						"description": "Revoke current access token."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Projects API (requires authentiction)",
+			"item": [
+				{
+					"name": "List all projects (supports filtration)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/projects",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"projects"
+							],
+							"query": [
+								{
+									"key": "filter[name]",
+									"value": "{{search}}",
+									"description": "Filter by project name.",
+									"disabled": true
+								},
+								{
+									"key": "filter[status]",
+									"value": "finished",
+									"description": "Filter by project status.",
+									"disabled": true
+								},
+								{
+									"key": "filter[department]",
+									"value": "Department 1",
+									"description": "Filter by project department name.",
+									"disabled": true
+								},
+								{
+									"key": "filter[start_date]",
+									"value": "20",
+									"description": "Filter by project start date.",
+									"disabled": true
+								},
+								{
+									"key": "filter[end_date]",
+									"value": "20",
+									"description": "Filter by project end date.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "List all projects:\n\n- sorted descendingly by `id`.\n    \n- supports filtration by `name`, `status`, `department` name, `start_date`, and `end_date`. No need to use the full value for the needed projects, just a part of it."
+					},
+					"response": []
+				},
+				{
+					"name": "Show project details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/projects/:project-idi",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"projects",
+								":project-idi"
+							],
+							"variable": [
+								{
+									"key": "project-id",
+									"value": "{{projectId}}",
+									"type": "text"
+								}
+							]
+						},
+						"description": "Get full details of a single project by its `id`.\n\nFor example, it includes the project assignees. (id, first name, last name, and email)"
+					},
+					"response": []
+				},
+				{
+					"name": "Create project",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Project name",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "pending",
+									"type": "text"
+								},
+								{
+									"key": "department",
+									"value": "Department name",
+									"type": "text"
+								},
+								{
+									"key": "start_date",
+									"value": "2024-01-01",
+									"type": "text"
+								},
+								{
+									"key": "end_date",
+									"value": "2025-05-31",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/projects",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"projects"
+							]
+						},
+						"description": "Create a project, including its meta data. (department, start/end dates)"
+					},
+					"response": []
+				},
+				{
+					"name": "Update project",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/projects/:project-id?name=Project name&status=pending&department=Department name&start_date=2024-01-01&end_date=2025-05-31",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"projects",
+								":project-id"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Project name"
+								},
+								{
+									"key": "status",
+									"value": "pending"
+								},
+								{
+									"key": "department",
+									"value": "Department name"
+								},
+								{
+									"key": "start_date",
+									"value": "2024-01-01"
+								},
+								{
+									"key": "end_date",
+									"value": "2025-05-31"
+								}
+							],
+							"variable": [
+								{
+									"key": "project-id",
+									"value": "{{projectId}}"
+								}
+							]
+						},
+						"description": "Update an existing project by its `id`, including its meta data. (department, start/end dates)"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete project",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/projects/:project-id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"projects",
+								":project-id"
+							],
+							"variable": [
+								{
+									"key": "project-id",
+									"value": "{{projectId}}"
+								}
+							]
+						},
+						"description": "Delete an existing project by its `id.`"
+					},
+					"response": []
+				}
+			],
+			"description": "Project endpoints. (full CRUD)\n\nYou must be logged-in to have access all project endpoints."
+		},
+		{
+			"name": "Timesheets logs/records API (requires authentiction)",
+			"item": [
+				{
+					"name": "List timesheet logs (supports filtration)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/timesheet/logs",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"timesheet",
+								"logs"
+							],
+							"query": [
+								{
+									"key": "filter[project_id]",
+									"value": "1",
+									"description": "Filter by project id. (numeric ~ exact id)",
+									"disabled": true
+								},
+								{
+									"key": "filter[user_id]",
+									"value": "1",
+									"description": "Filter by user id. (numeric ~ exact id). Disabled for regular users.",
+									"disabled": true
+								},
+								{
+									"key": "filter[task_name]",
+									"value": "{{search}}",
+									"description": "Filter by task name.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "List all projects:\n\n- sorted descendingly by `id`.\n    \n- supports filtration by `project_id`, `user_id`, and`task_name`. No need to use the full value for the needed projects, just a part of it.\n    \n- Currently, for regular users, results are forcibly filtered by his/her `id`. (numeric \\~ exact id)  \n    Later on, it is supposed that admins would be able to filter the results by user/assignee id."
+					},
+					"response": []
+				},
+				{
+					"name": "Show timesheet log details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/timesheet/logs/:timesheet-log-id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"timesheet",
+								"logs",
+								":timesheet-log-id"
+							],
+							"variable": [
+								{
+									"key": "timesheet-log-id",
+									"value": "{{timesheetLogId}}"
+								}
+							]
+						},
+						"description": "Get full details of a single project by its `id`."
+					},
+					"response": []
+				},
+				{
+					"name": "Create timesheet log",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "task_name",
+									"value": "Some description about what has been done in this task..",
+									"description": "* Task description. (free text)",
+									"type": "text"
+								},
+								{
+									"key": "project_id",
+									"value": "{{projectId}}",
+									"description": "* Project id the task is logged to. (numeric)",
+									"type": "text"
+								},
+								{
+									"key": "hours",
+									"value": "2",
+									"description": "* Hours spent in this task. (numeric)",
+									"type": "text"
+								},
+								{
+									"key": "date",
+									"value": "2025-05-31",
+									"description": "* Log date (date)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/timesheet/logs",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"timesheet",
+								"logs"
+							]
+						},
+						"description": "Log a task into **your** timesheet."
+					},
+					"response": []
+				},
+				{
+					"name": "Update timesheet log",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "task_name",
+									"value": "Some description about what has been done in this task..",
+									"description": "* Task description. (free text)",
+									"type": "text"
+								},
+								{
+									"key": "project_id",
+									"value": "{{projectId}}",
+									"description": "* Project id the task is logged to. (numeric)",
+									"type": "text"
+								},
+								{
+									"key": "hours",
+									"value": "2",
+									"description": "* Hours spent in this task. (numeric)",
+									"type": "text"
+								},
+								{
+									"key": "date",
+									"value": "2025-05-31",
+									"description": "* Log date (date)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/timesheet/logs/:timesheet-log-id?task_name=Updated task description..",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"timesheet",
+								"logs",
+								":timesheet-log-id"
+							],
+							"query": [
+								{
+									"key": "task_name",
+									"value": "Updated task description..",
+									"description": "Task description. (free text)"
+								},
+								{
+									"key": "hours",
+									"value": "2",
+									"description": "Hours spent in this task. (numeric)",
+									"disabled": true
+								},
+								{
+									"key": "date",
+									"value": "2025-05-31",
+									"description": "Hours spent in this task. (numeric)",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "timesheet-log-id",
+									"value": "{{timesheetLogId}}",
+									"description": "Timesheet log id. (numeric)"
+								}
+							]
+						},
+						"description": "Update an existing timehseet log **of yours.**\n\nUnfortunately, you cannot change the `project_id`. To do so, just delete the unneeded log and re-create a new one on the right project using the [create endpoint](https://go.postman.co/workspace/549948de-ec54-4a7f-8aec-92fcc75914b3/documentation/40194412-577d4adf-ad5d-4b50-809f-3f986018c24f?entity=request-f0bc5c3c-305e-45eb-b43a-b582738a3e5c)."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete timesheet log",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/timesheet/logs/:timesheet-log-id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"timesheet",
+								"logs",
+								":timesheet-log-id"
+							],
+							"variable": [
+								{
+									"key": "timesheet-log-id",
+									"value": "{{timesheetLogId}}",
+									"description": "Timesheet log id. (numeric)"
+								}
+							]
+						},
+						"description": "Delete an existing timesheet logs **of yours** by its `id`."
+					},
+					"response": []
+				}
+			],
+			"description": "Timesheet logs/records endpoints. (full CRUD)\n\nYou must be logged-in to have access all timesheet endpoints."
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"pm.request.headers.add(",
+					"    {",
+					"        key: 'Accept',",
+					"        value: 'application/json'",
+					"    },",
+					"    {",
+					"        key: 'Content-Type',",
+					"        value: 'application/json'",
+					"    }",
+					")"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,99 @@
+{
+	"id": "6d3e0804-3c45-4811-bfeb-031588638761",
+	"name": "Local",
+	"values": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "version",
+			"value": "v1",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "passportClientId",
+			"value": "9e70dc36-44fa-4723-86bb-70308ce9fce1",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "passportClientSecret",
+			"value": "AhE64vX0eBsPnvMSTeL5EaZPldDiPTrmtblHI2Zl",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "passportRefreshToken",
+			"value": "def50200eba4c52160812db929a7dd536161ebd5a3e8e8ae986430c848e44b0f18778ef244c53592bfce16ea9fa38c4475c3ca266df3d74676f9560a386ca6223cda2ab628efce5ad15e386339c322d3de9ba3066fb57499a81403ba69d09b852cec39030b17136b9207bf4b43323d7ef8da7f6b8f2c53c72819be2e6756a0edb0d573959ac0fd32d19be4c3f33fe985baccc3afdf3dce537ef2dab061a8eeaae7c0d282d2bba6d7b3bd645a105bf9f9351e27413ce92c6c8164302ff5f251d06fa392fec2a7850f338c5f678d3ae3059bc2ff2ebb36330c10eac89680fa01b82110ecf63be22e6ab502caf3901ba118aa7d82aa16a35dca5c44236fec33b822b08836f917e9dafa1833c67842cad7c2f6657817639a6b9fd5d34595864463db694f5ab562c5859befba9de24d08b38432e797fccd71e57c41a0a9dfb0408629d461a8ff9a1193723e9f2de71f5d398d1b7ccd4999e0c92dd874ea77039147386cb2330de3ebb69797f4a1f74f49178d1c6441030f39efc2302900e4aed3308ddf486b98b4cd6b",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "accessToken",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5ZTcwZGMzNi00NGZhLTQ3MjMtODZiYi03MDMwOGNlOWZjZTEiLCJqdGkiOiIyNGYwMGI2NmFmODBjMDRjYjM1MDk3YTVmNzU0OWM3NDI1ZGFiYTg2ODI1Y2JmZjVjOGE3ZDI4YmZlY2I1MDY1YjM4YzgyMjA0MDc4NGU5NyIsImlhdCI6MTc0MjA4MDY0NC43MzkzMTIsIm5iZiI6MTc0MjA4MDY0NC43MzkzMTMsImV4cCI6MTc0MzM3NjY0NC43MzI3NjUsInN1YiI6IjExIiwic2NvcGVzIjpbXX0.ap7_dzTy8vvUW7S_mkDE1K22lXmza2A-ZHB1elmRmX1phg85MfGg8uC189IXlvHsKr-OvZTamWKJEdVksxzAIw4Gh5olPKn_oZmQths-3BlPqBM9XIYUHNAe3Xl1USacXe16XSdLEXfcRu3T589uU67qI6HEdGa9O9G1jMcDC7Tn7AaA_3y0yrFWWnQxAA-DRT54koqb0Zv7pM4vjI50_t_uDNceJra46mNquOBlLr4yQ7JIBxJUV7wqI5EVBvETScTvtBbvV4lvdyYeybN4m4y9zB5ilt66AuquqxbEoDkaggGRjfIGsrL6t6lZHVX2fYugiePBs7kgfVKWUByeq0f67W0yfdKvVvsJFQpb0O10aUyY93E0xkWigrv557p8VAXmBfO-sCHUfo9-qzSttkH5fyls2tcAT6WGzOhU3WORuk6PXdWkkSYLard_irbGdO8n14tfy35fd4-lA_S9DG4HZZXTpksfbOnKDVNOXj3NMHg-sCqaf4HGqGhrmkILIgZO4fpGlvgPoXPj73E9IWBEXAA3kz66-sP4bVHinnodYN47oWvjML6qGYMVFq0mn-DuDWnWJneAWbqZoGUC5XTTIt7l7T1cUsColqd0aSGj6h76xCo5bKEDdWiiQAjYabg1rO3vQVQXhmV78yOwsPauDJRqAF0nCqTK4cBfQgU",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "username",
+			"value": "minaalfy8@gmail.com",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "password",
+			"value": "newPassw&rd1",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "email",
+			"value": "minaalfy8@gmail.com",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "firstName",
+			"value": "Mina",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "last_name",
+			"value": "Alfy",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "projectId",
+			"value": "1",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "timesheetLogId",
+			"value": "100",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "attributeId",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "search",
+			"value": "dolore",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2025-03-16T18:37:09.792Z",
+	"_postman_exported_using": "Postman/11.35.4"
+}
