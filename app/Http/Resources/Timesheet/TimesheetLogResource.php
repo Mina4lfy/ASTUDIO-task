@@ -19,8 +19,10 @@ class TimesheetLogResource extends JsonResource
         return [
             'id'        => $this->id,
             'task_name' => $this->task_name,
+            'project_id'=> $this->project_id,
+            'user_id'   => $this->user_id,
             'project'   => ProjectResource::make($this->whenLoaded('project')),
-            'assignee'  => ProjectAssigneeResource::make($this->whenLoaded('user')),
+            'user'      => ProjectAssigneeResource::make($this->whenLoaded('user')),
             'date'      => $this->date,
             'hours'     => $this->hours,
             'created_at'=> $this->created_at,

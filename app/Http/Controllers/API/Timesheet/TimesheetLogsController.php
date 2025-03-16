@@ -28,7 +28,7 @@ class TimesheetLogsController extends Controller
     public function index(Request $request, ?Project $project = null)
     {
         $query = $project ? $project->timesheetLogs() : TimesheetLog::query();
-        $query->with('user');
+        // $query->with('user', 'project');
 
         # Foribly filter results by current user id requesting the resource.
         $request->merge(['user_id' => $request->user()->id]);

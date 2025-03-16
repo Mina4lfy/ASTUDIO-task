@@ -58,6 +58,12 @@ class TimesheetLog extends BaseModel
 
             'task_name'     => fn($q, $value) => $q->where('task_name', 'like', "%$value%"),
 
+            'hours'         => fn($q, $value) => $q->where('hours', $value),
+
+            'date'          => fn($q, $value) => $q->where('date', 'like', "%$value%"),
+
+            'created_at'    => fn($q, $value) => $q->where('created_at', 'like', "%$value%"),
+
         ], $params, $query)->orderBy('id', 'DESC');
     }
 }
