@@ -7,10 +7,15 @@ use App\Models\BaseModel;
 use App\Models\User;
 use App\Models\Project\ProjectUser;
 use App\Models\Timesheet\TimesheetLog;
+
+# traits
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use \Rinvex\Attributes\Traits\Attributable;
+
+# eloquent.
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
-use \Rinvex\Attributes\Traits\Attributable;
 
 class Project extends BaseModel
 {
@@ -56,10 +61,33 @@ class Project extends BaseModel
     }
 
 
+    # search
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function search(null|array $params, ?Builder $query = null): Builder
+    {
+        return static::filter([
+
+            'name'          => fn($q, $value) => $q->where('name', 'like', "%$value%"),
+
+            'status'        => fn($q, $value) => $q->where('status', 'like', "%$value%"),
+
+            'department'    => fn($q, $value) => $q->whereHas('department', fn ($subQ) => $subQ->whereHas('option', fn ($subSubQ) => $subSubQ->where('content', 'like', "%$value%"))),
+
+            'start_date'    => fn($q, $value) => $q->whereHas('start_date', fn($subQ) => $subQ->where('content', 'like', "%$value%")),
+
+            'end_date'      => fn($q, $value) => $q->whereHas('end_date', fn($subQ) => $subQ->where('content', 'like', "%$value%")),
+
+        ], $params, $query)->orderBy('id', 'DESC');
+    }
+
+
     # methods
 
     /**
-     * Assign user(s) to project if not already assigned
+     * Assign user(s) to project if not already assigned.
      *
      * @param array<\App\Models\User> $users
      * @return bool

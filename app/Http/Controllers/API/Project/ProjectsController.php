@@ -25,7 +25,7 @@ class ProjectsController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Project::query();
+        $query = Project::search($request->filter);
 
         $projects = $query->paginate($request->per_page);
 
