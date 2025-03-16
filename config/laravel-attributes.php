@@ -11,6 +11,7 @@ return [
     'tables' => [
 
         'attributes' => 'attributes',
+        'attributes_options' => 'attributes_options',
         'attribute_entity' => 'attribute_entity',
         'attribute_boolean_values' => 'attribute_boolean_values',
         'attribute_datetime_values' => 'attribute_datetime_values',
@@ -18,6 +19,7 @@ return [
         'attribute_integer_values' => 'attribute_integer_values',
         'attribute_text_values' => 'attribute_text_values',
         'attribute_varchar_values' => 'attribute_varchar_values',
+        'attribute_select_values' => 'attribute_select_values',
 
     ],
 

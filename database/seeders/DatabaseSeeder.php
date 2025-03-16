@@ -32,6 +32,13 @@ class DatabaseSeeder extends Seeder
      */
     private const TIMESHEET_LOGS_COUNT = 100;
 
+    /**
+     * Available project department options
+     *
+     * @const array
+     */
+    private const DEPARTMENTS = ['Department 1', 'Department 2', 'Department 3'];
+
 
     # Runer
 
@@ -89,15 +96,18 @@ class DatabaseSeeder extends Seeder
      */
     private function seedAttributes(): Collection
     {
-        $attributes[] = app('rinvex.attributes.attribute')->updateOrCreate([
+        $attributes[] = $departmentAttribute = app('rinvex.attributes.attribute')->updateOrCreate([
             'slug' => 'department',
         ], [
             'description' => 'Department that this project belongs to.',
-            'type' => 'varchar',
+            'type' => 'select',
             'name' => 'Department',
             'is_required' => true,
             'entities' => [Project::class],
         ]);
+
+        # Add department options.
+        $departmentAttribute->addOptions(static::DEPARTMENTS);
 
         $attributes[] = app('rinvex.attributes.attribute')->updateOrCreate([
             'slug' => 'start_date',
@@ -130,7 +140,7 @@ class DatabaseSeeder extends Seeder
     {
         foreach ($projects as $project) {
             $project
-                ->setAttribute('department', fake()->name())
+                ->setAttribute('department', strval(rand(1, count(static::DEPARTMENTS))))
                 ->setAttribute('start_date', fake()->date())
                 ->setAttribute('end_date', fake()->date())
                 ->save();
