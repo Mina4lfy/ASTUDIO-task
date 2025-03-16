@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "577d4adf-ad5d-4b50-809f-3f986018c24f",
 		"name": "ASTUDIO Recruitment Task",
+		"description": "## Steps to our APIs:\n\n1. Ensure you have imported both, the collection and its local environment vars. Make sure the environment is selected.\n    \n2. Login with the following credentials: (You'd better save it into your env vars)  \n    `username`: `minaalfy8@gmail.com`  \n    `password`: `newPassw&rd1`\n    \n3. Store the `access_token` you've just obtained into the environment variable `{{accessToken}}`. Or navigate to `Collection > Authorization tab > Use the access_token as your Beare Token`.\n    \n4. You can now perform `Projects/Timesheets`; as all requests in this Postman collection inherit their parent Authorization, i.e. the token you have just stored.\n    \n5. When done, revoke your access token. (Logout)\n    \n\n---\n\n### Kindly note that all listing endpoints support pagination. Thus, request can have a\n\n- `page` \\~ Current page. (default: 1)\n    \n- `per_page` \\~ Results count per page. (default: 10, max: 100)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "40194412"
 	},
@@ -170,7 +171,203 @@
 						},
 						"description": "Create a new user."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "first_name",
+											"value": "Mina",
+											"description": "* User's first name.",
+											"type": "text"
+										},
+										{
+											"key": "last_name",
+											"value": "Alfy",
+											"description": "* User's last/family name.",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "minaalfy8@gmail.com",
+											"description": "* User email address to be then used for login.",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "newPassw&rd1",
+											"description": "* Password. (min: 8 characters)",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "newPassw&rd1",
+											"description": "* Same as `Password` for confirmation.",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/auth/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Mar 2025 19:06:10 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "laravel_session=fbrMICoHyzmUZL6J3WCyFSIHjjgoAhHdpGnw2Csp; expires=Sun, 16 Mar 2025 21:06:10 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token_type\": \"Bearer\",\n    \"expires_in\": 1296000,\n    \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5ZTcyOWU3NS1kYWFlLTQ3YmEtOGEwNy04ZmJjM2VmZThjZTIiLCJqdGkiOiI2Mjk5OWZhMDU4MmMwZWUyODI4NjYyNjJjYjA5YTg2NWU4ODA0ZTVkNTY4YjU1ZWQyZmU3YzYwNmNmZmRhNTA0Nzk3MDAyNDIyNGQzMzk5NiIsImlhdCI6MTc0MjE1MTk3MC43MzE4MzYsIm5iZiI6MTc0MjE1MTk3MC43MzE4MzcsImV4cCI6MTc0MzQ0Nzk3MC43MTYyODYsInN1YiI6IjExIiwic2NvcGVzIjpbXX0.FpyDp6yYFl7bucW4ZujxpiqSDw2T8gtngAXLO_Fs5iPg-7NuZTcLtcn3sRoU6uNpQXAaBLTmxPeLRSoQ1K-56ckeEY-NrdafvmyO6VK5Fn5NSZZJjhvzsbGsUhmDvfR3YW7mfF1zHoPNr4Ujzkhl5LJ7CAouKVqMkE7ACnr3nFOtwHfDgqTRi05tmmrqVSAQ6nV2gYDlCrlbQZv_szXzrfYFdSFXc9gkTJ86wMUh6Yj3LuOPV6bxCgTFHTvhg5hb36KHHLwBBcpFFtvKt1e4gRmVoa-mLlclPr4e7XjK04MXbQ3Ome2v3tngkWVqdhdyFEcO6GG2b5DHEtweennJwU4JMWu6pgFHjkZ0qgKCGIHwPRWESfVfsUOTwKPsKLIhPeVMlwAWy19fhueVJ7TYNHboG8giZIHwO7Lsla7g389j74_QB3v7AtA8Gj5G6wCs6P7IJbqGSRmkysdCm3s-FM3XlShkl34zaZsZF3A9Ajz8ODx1kMptitXiiHIkAbsf7VzEugMnYrwZuXN-6zWCcIWQ89tunRQkzjDW6rwsrr1hlmmgYzHYypVhsNR6FN4WHQj8NLNuxDUE_JSq_EzVf4djbNCFoPWL-tV-L-KVnH83JncI4w08jZAZN0phy8wjcP5y8wuK8NPSMk1qHxVVPMtbsn39aRbua-Tg6bQbNMM\",\n    \"refresh_token\": \"def5020015d95b180969a865626890f28df9ccda3d2e4859f888ae1bde3fdbe293536da9e1e138c1f607363349e5f232b0e8edeede952e3a4ccd05d602a1da899548402f109dde97a3c0ea896699d96fe581efcf7ed1413fe3353dac56b021977500b000f62b3bd85abb5f0bfed8da308ab1bf4067829e1d0b0ac68163ef0e2ae0a3054fd8907e8058e1cb8903e757167f03318a41f60a068c042825a45b3732456c57e6dffb529666a32342ede78db896e683f28504993761a677c490a9756c64874fca1602a341d56833fbc166a1dcea3065b58ccc78729c8e25bbedd0e1ba5b1dfbc0afcef73ebd4b5af6ef4959e9c49dbebc13bbc8bd088bb5c3d2addf289f02318b6724c3c9ba30a651e68474c7a3b6b99afe01119e203a5de1b198c97ac5e60d6b58d04148f2a0640d7989eff544f3dfac8de0a0c77392bf09415bc3766aa4270e0f2a3e8bf00fd0f85f173342c59201fcd640684b91270552ce761785baaa19cb22632472384e1313aaaef9bb46d38ab26fee2ddab0aa1ff6ed9127bb00e2840442\"\n}"
+						},
+						{
+							"name": "Failure",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "first_name",
+											"value": "{{firstName}}",
+											"description": "* User's first name.",
+											"type": "text"
+										},
+										{
+											"key": "last_name",
+											"value": "{{last_name}}",
+											"description": "* User's last/family name.",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "{{email}}",
+											"description": "* User email address to be then used for login.",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"description": "* Password. (min: 8 characters)",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "{{password}}",
+											"description": "* Same as `Password` for confirmation.",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/{{version}}/auth/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"{{version}}",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Mar 2025 19:05:32 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "laravel_session=fbrMICoHyzmUZL6J3WCyFSIHjjgoAhHdpGnw2Csp; expires=Sun, 16 Mar 2025 21:05:32 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": {\n        \"email\": [\n            \"The email has already been taken.\"\n        ]\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Login",
@@ -208,7 +405,167 @@
 						},
 						"description": "Login with user creds, i.e. `username` and `password`, to obtain your access token."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "minaalfy8@gmail.com",
+											"description": "* User email address to be then used for login.",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "newPassw&rd1",
+											"description": "* Password. (min: 8 characters)",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Mar 2025 18:56:37 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "laravel_session=fbrMICoHyzmUZL6J3WCyFSIHjjgoAhHdpGnw2Csp; expires=Sun, 16 Mar 2025 20:56:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token_type\": \"Bearer\",\n    \"expires_in\": 1296000,\n    \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5ZTcyOWU3NS1kYWFlLTQ3YmEtOGEwNy04ZmJjM2VmZThjZTIiLCJqdGkiOiI0ZDM1OTQzYzA4MzdhM2E4ZDljZjc1OTNiMDEyNDQ1MjZiMTA3OGQzOTMwYmFhOGJjMTY3NTc0Yzk4OGE3ZTgzYjg4MzgzY2ZiMmQwYzA0MiIsImlhdCI6MTc0MjE1MTM5Ny4yNjkxMDYsIm5iZiI6MTc0MjE1MTM5Ny4yNjkxMDcsImV4cCI6MTc0MzQ0NzM5Ny4yNTMyMTgsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.yYjqqXF7IngBH6vPhqxLFRqQdirMyihsopzfhfZn4hnjsc-pxE48Ff4P1kC63ImRHgvY-jiScIiapqTYNg6jDesy2KK17pzERYdUDyXdDEE_R7W8nn15hUS5eI65YSkjet0etJX25jJi9oN-9dUw8l2sVS422s82bSD_LUAz3YlqsmULzK4WSdtzExf1E_PAGbO22hLQI8bj9mobjyKzNOHi7MKBQlsHc8uvXV4o8uebQwP43vRtYHhC0Lc6NNoh52CEjSwzJ9p9ODR9elhSr3VxlwOZCgQVDJD2IKI1370_YcOb_qxjsTLDYG7sB47RbkcUDed7ZvgQwaNCVKcGIhcN5gQqLog-1NGarGA9U2D2TLcwSTmlCxubqHkpvr6Su6E2dSeJdFqv-4PIP8cr3bLI_GBD08xkE0iD2d2ky46AjJq8rsENqSuZoVSAOFj4iUoWqGOLUN7GGROd7RB1tPO82Z5Mb7HDg3qZHKo3Bwuhat6OV2EmPXB9uNG8V6YE1DDSc_6GTXqteI_Rv7J8JI5di3KqGK5tZTlEqvvvSqRf2MWA5MUQ8QlHHkTJpsgERGPMdgmV4ivnQk-RTC43Rt7_Xi77n0zTZXbc3wJ9hgu_uKXfKDr5GHOEl1daH5vEeRskRJWQeI2R1vfCFqaDOfW-BzfdlbbiTvFuozf_8ic\",\n    \"refresh_token\": \"def50200b9917f05f4c6623c84e499ccd895aa5b1c99dfc4ef2797eff35bffa0004750af0a036f154f4bba9bc3555b7561251506591d2295e94e576649a9658b95232d01b5ceb00f6496f4aa9750c00e2d4a2a3e124560e6d9b394ff70b0505f35e87587a2b76cb17abd052c62e0fde060584fef51ac3441b9ab2c498520f3891136311899d2ffae8cfe7f7cf5513dd301d9fddaf8cbd444dbec47728cfdece8569f7defb6ec0444a844d362de934bb47bb6885161f57bab5cf522b294bcc752f16a30a98427c203042c14c5e3fa59587ca7738a0c436d3aa34ac82360f15d13c933f6e0a4d7ce321a7fbf91afb72d03cd48a0a786ad9ad39667991cc40bb3fcc7da50ee0566a9dd5c2cafb7ae361369aefc7a639c0881d288667be28898a95f4c8bfd15fc002150f3911816a88688f247c491c7d2c6ad499c931293ff857256eb436bd165251fd625e38e81b78f0ed02058aa431079d658e65aa0790322160e675967b2d6eef942c394ee782eddaea127549525956463ee5a1a7d100542c4f3910ce08e\"\n}"
+						},
+						{
+							"name": "Failure",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "{{email}}",
+											"description": "* User email address to be then used for login.",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"description": "* Password. (min: 8 characters)",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/{{version}}/auth/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"{{version}}",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Mar 2025 19:05:02 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "laravel_session=fbrMICoHyzmUZL6J3WCyFSIHjjgoAhHdpGnw2Csp; expires=Sun, 16 Mar 2025 21:05:02 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"invalid_grant\",\n    \"error_description\": \"The user credentials were incorrect.\",\n    \"message\": \"The user credentials were incorrect.\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Logout",
@@ -229,7 +586,133 @@
 						},
 						"description": "Revoke current access token."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost/api/v1/auth/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Mar 2025 19:07:47 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "laravel_session=fbrMICoHyzmUZL6J3WCyFSIHjjgoAhHdpGnw2Csp; expires=Sun, 16 Mar 2025 21:07:47 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Successfully logged out\"\n}"
+						},
+						{
+							"name": "Failure",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/{{version}}/auth/logout",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"{{version}}",
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Mar 2025 19:06:39 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "laravel_session=fbrMICoHyzmUZL6J3WCyFSIHjjgoAhHdpGnw2Csp; expires=Sun, 16 Mar 2025 21:06:39 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"error\": \"Unauthenticated\",\n    \"message\": \"Authentication is required to access this resource.\"\n}"
+						}
+					]
 				}
 			]
 		},
@@ -237,7 +720,7 @@
 			"name": "Projects API (requires authentiction)",
 			"item": [
 				{
-					"name": "List all projects (supports filtration)",
+					"name": "List projects (supports filtration)",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -253,6 +736,18 @@
 							],
 							"query": [
 								{
+									"key": "page",
+									"value": "2",
+									"description": "Default; 1. (numeric)",
+									"disabled": true
+								},
+								{
+									"key": "per_page",
+									"value": "3",
+									"description": "Default: 10. (numeric)",
+									"disabled": true
+								},
+								{
 									"key": "filter[name]",
 									"value": "{{search}}",
 									"description": "Filter by project name.",
@@ -260,13 +755,13 @@
 								},
 								{
 									"key": "filter[status]",
-									"value": "finished",
+									"value": "in-progress",
 									"description": "Filter by project status.",
 									"disabled": true
 								},
 								{
 									"key": "filter[department]",
-									"value": "Department 1",
+									"value": "2",
 									"description": "Filter by project department name.",
 									"disabled": true
 								},
@@ -286,7 +781,318 @@
 						},
 						"description": "List all projects:\n\n- sorted descendingly by `id`.\n    \n- supports filtration by `name`, `status`, `department` name, `start_date`, and `end_date`. No need to use the full value for the needed projects, just a part of it."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "List all projects (3 per page, page no. 2)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost/api/v1/projects?page=2&per_page=3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"projects"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2",
+											"description": "Default; 1. (numeric)"
+										},
+										{
+											"key": "per_page",
+											"value": "3",
+											"description": "Default: 10. (numeric)"
+										},
+										{
+											"key": "filter[name]",
+											"value": "dolore",
+											"description": "Filter by project name.",
+											"disabled": true
+										},
+										{
+											"key": "filter[status]",
+											"value": "pending",
+											"description": "Filter by project status.",
+											"disabled": true
+										},
+										{
+											"key": "filter[department]",
+											"value": "Department",
+											"description": "Filter by project department name.",
+											"disabled": true
+										},
+										{
+											"key": "filter[start_date]",
+											"value": "20",
+											"description": "Filter by project start date.",
+											"disabled": true
+										},
+										{
+											"key": "filter[end_date]",
+											"value": "20",
+											"description": "Filter by project end date.",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Mar 2025 20:19:47 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Sun, 16 Mar 2025 22:19:47 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 7,\n            \"name\": \"Dario Boyer\",\n            \"status\": \"archived\",\n            \"department\": \"Department 1\",\n            \"start_date\": \"1988-01-16T00:00:00.000000Z\",\n            \"end_date\": \"2009-12-05T00:00:00.000000Z\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"Brain Rice\",\n            \"status\": \"in-progress\",\n            \"department\": \"Department 3\",\n            \"start_date\": \"1995-05-20T00:00:00.000000Z\",\n            \"end_date\": \"1971-10-15T00:00:00.000000Z\"\n        },\n        {\n            \"id\": 5,\n            \"name\": \"Dorothy Romaguera\",\n            \"status\": \"finished\",\n            \"department\": \"Department 3\",\n            \"start_date\": \"1998-08-03T00:00:00.000000Z\",\n            \"end_date\": \"1975-12-27T00:00:00.000000Z\"\n        }\n    ],\n    \"links\": {\n        \"first\": \"http://localhost/api/v1/projects?page=1\",\n        \"last\": \"http://localhost/api/v1/projects?page=4\",\n        \"prev\": \"http://localhost/api/v1/projects?page=1\",\n        \"next\": \"http://localhost/api/v1/projects?page=3\"\n    },\n    \"meta\": {\n        \"current_page\": 2,\n        \"from\": 4,\n        \"last_page\": 4,\n        \"links\": [\n            {\n                \"url\": \"http://localhost/api/v1/projects?page=1\",\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://localhost/api/v1/projects?page=1\",\n                \"label\": \"1\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://localhost/api/v1/projects?page=2\",\n                \"label\": \"2\",\n                \"active\": true\n            },\n            {\n                \"url\": \"http://localhost/api/v1/projects?page=3\",\n                \"label\": \"3\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://localhost/api/v1/projects?page=4\",\n                \"label\": \"4\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://localhost/api/v1/projects?page=3\",\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"path\": \"http://localhost/api/v1/projects\",\n        \"per_page\": 3,\n        \"to\": 6,\n        \"total\": 10\n    }\n}"
+						},
+						{
+							"name": "Filter projects by the word \"Rice\"",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/projects?filter[name]={{search}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"projects"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2",
+											"description": "Default; 1. (numeric)",
+											"disabled": true
+										},
+										{
+											"key": "per_page",
+											"value": "3",
+											"description": "Default: 10. (numeric)",
+											"disabled": true
+										},
+										{
+											"key": "filter[name]",
+											"value": "{{search}}",
+											"description": "Filter by project name."
+										},
+										{
+											"key": "filter[status]",
+											"value": "pending",
+											"description": "Filter by project status.",
+											"disabled": true
+										},
+										{
+											"key": "filter[department]",
+											"value": "Department",
+											"description": "Filter by project department name.",
+											"disabled": true
+										},
+										{
+											"key": "filter[start_date]",
+											"value": "20",
+											"description": "Filter by project start date.",
+											"disabled": true
+										},
+										{
+											"key": "filter[end_date]",
+											"value": "20",
+											"description": "Filter by project end date.",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Mar 2025 20:22:25 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Sun, 16 Mar 2025 22:22:25 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 6,\n            \"name\": \"Brain Rice\",\n            \"status\": \"in-progress\",\n            \"department\": \"Department 3\",\n            \"start_date\": \"1995-05-20T00:00:00.000000Z\",\n            \"end_date\": \"1971-10-15T00:00:00.000000Z\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"Sienna Rice\",\n            \"status\": \"archived\",\n            \"department\": \"Department 1\",\n            \"start_date\": \"1986-07-02T00:00:00.000000Z\",\n            \"end_date\": \"1986-08-30T00:00:00.000000Z\"\n        }\n    ],\n    \"links\": {\n        \"first\": \"http://localhost/api/v1/projects?page=1\",\n        \"last\": \"http://localhost/api/v1/projects?page=1\",\n        \"prev\": null,\n        \"next\": null\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 1,\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://localhost/api/v1/projects?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"path\": \"http://localhost/api/v1/projects\",\n        \"per_page\": 10,\n        \"to\": 2,\n        \"total\": 2\n    }\n}"
+						},
+						{
+							"name": "Multiple filters on projects",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/projects?filter[status]=in-progress&filter[department]=2&filter[start_date]=20",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"projects"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2",
+											"description": "Default; 1. (numeric)",
+											"disabled": true
+										},
+										{
+											"key": "per_page",
+											"value": "3",
+											"description": "Default: 10. (numeric)",
+											"disabled": true
+										},
+										{
+											"key": "filter[name]",
+											"value": "{{search}}",
+											"description": "Filter by project name.",
+											"disabled": true
+										},
+										{
+											"key": "filter[status]",
+											"value": "in-progress",
+											"description": "Filter by project status."
+										},
+										{
+											"key": "filter[department]",
+											"value": "2",
+											"description": "Filter by project department name."
+										},
+										{
+											"key": "filter[start_date]",
+											"value": "20",
+											"description": "Filter by project start date."
+										},
+										{
+											"key": "filter[end_date]",
+											"value": "20",
+											"description": "Filter by project end date.",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Mar 2025 20:23:48 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Sun, 16 Mar 2025 22:23:48 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 8,\n            \"name\": \"Agustin Roob\",\n            \"status\": \"in-progress\",\n            \"department\": \"Department 2\",\n            \"start_date\": \"2020-10-01T00:00:00.000000Z\",\n            \"end_date\": \"1973-05-13T00:00:00.000000Z\"\n        }\n    ],\n    \"links\": {\n        \"first\": \"http://localhost/api/v1/projects?page=1\",\n        \"last\": \"http://localhost/api/v1/projects?page=1\",\n        \"prev\": null,\n        \"next\": null\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 1,\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://localhost/api/v1/projects?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"path\": \"http://localhost/api/v1/projects\",\n        \"per_page\": 10,\n        \"to\": 1,\n        \"total\": 1\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Show project details",
@@ -294,7 +1100,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/projects/:project-idi",
+							"raw": "{{baseUrl}}/api/v1/projects/:project-id",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -302,19 +1108,90 @@
 								"api",
 								"v1",
 								"projects",
-								":project-idi"
+								":project-id"
 							],
 							"variable": [
 								{
 									"key": "project-id",
 									"value": "{{projectId}}",
-									"type": "text"
+									"description": "Project iid. (numeric)"
 								}
 							]
 						},
 						"description": "Get full details of a single project by its `id`.\n\nFor example, it includes the project assignees. (id, first name, last name, and email)"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Project details",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost/api/v1/projects/:project-id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"projects",
+										":project-id"
+									],
+									"variable": [
+										{
+											"key": "project-id",
+											"value": "1",
+											"description": "Project iid. (numeric)"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Mar 2025 20:24:27 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Sun, 16 Mar 2025 22:24:27 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 7,\n        \"name\": \"Dario Boyer\",\n        \"status\": \"archived\",\n        \"assignees\": [\n            {\n                \"id\": 4,\n                \"first_name\": \"Concepcion\",\n                \"last_name\": \"Mraz\",\n                \"email\": \"veum.tracey@example.net\"\n            }\n        ],\n        \"assignees_count\": 1,\n        \"department\": \"Department 1\",\n        \"start_date\": \"1988-01-16T00:00:00.000000Z\",\n        \"end_date\": \"2009-12-05T00:00:00.000000Z\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Create project",
@@ -327,26 +1204,31 @@
 								{
 									"key": "name",
 									"value": "Project name",
+									"description": "* Project name. (string)",
 									"type": "text"
 								},
 								{
 									"key": "status",
-									"value": "pending",
+									"value": "not-pending",
+									"description": "* Project status. (`pending`, `in-progress`, `finished`, `archived`)",
 									"type": "text"
 								},
 								{
 									"key": "department",
-									"value": "Department name",
+									"value": "Department 4",
+									"description": "* Department id. (numeric)",
 									"type": "text"
 								},
 								{
 									"key": "start_date",
 									"value": "2024-01-01",
+									"description": "Project start date. (date)",
 									"type": "text"
 								},
 								{
 									"key": "end_date",
 									"value": "2025-05-31",
+									"description": "Project end date. (date)",
 									"type": "text"
 								}
 							]
@@ -364,7 +1246,298 @@
 						},
 						"description": "Create a project, including its meta data. (department, start/end dates)"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Project name",
+											"description": "* Project name. (string)",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "pending",
+											"description": "* Project status. (`pending`, `in-progress`, `finished`, `archived`)",
+											"type": "text"
+										},
+										{
+											"key": "department",
+											"value": "Department 4",
+											"description": "* Department id. (numeric)",
+											"type": "text"
+										},
+										{
+											"key": "start_date",
+											"value": "2024-01-01",
+											"description": "Project start date. (date)",
+											"type": "text"
+										},
+										{
+											"key": "end_date",
+											"value": "2025-05-31",
+											"description": "Project end date. (date)",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/projects",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"projects"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Mar 2025 20:59:19 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Sun, 16 Mar 2025 22:59:19 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 19,\n        \"name\": \"Project name\",\n        \"status\": \"pending\",\n        \"assignees\": [],\n        \"assignees_count\": 0,\n        \"department\": \"Department 4\",\n        \"start_date\": \"2024-01-01T00:00:00.000000Z\",\n        \"end_date\": \"2025-05-31T00:00:00.000000Z\"\n    }\n}"
+						},
+						{
+							"name": "Failure: missing required meta data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Project name",
+											"description": "* Project name. (string)",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "pending",
+											"description": "* Project status. (`pending`, `in-progress`, `finished`, `archived`)",
+											"type": "text"
+										},
+										{
+											"key": "department",
+											"value": "Department 4",
+											"description": "* Department id. (numeric)",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "start_date",
+											"value": "2024-01-01",
+											"description": "Project start date. (date)",
+											"type": "text"
+										},
+										{
+											"key": "end_date",
+											"value": "2025-05-31",
+											"description": "Project end date. (date)",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/projects",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"projects"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Mar 2025 20:59:33 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Sun, 16 Mar 2025 22:59:33 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": {\n        \"department\": [\n            \"The department field is required.\"\n        ]\n    }\n}"
+						},
+						{
+							"name": "Failure: wrong status (select) meta data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Project name",
+											"description": "* Project name. (string)",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "not-pending",
+											"description": "* Project status. (`pending`, `in-progress`, `finished`, `archived`)",
+											"type": "text"
+										},
+										{
+											"key": "department",
+											"value": "Department 4",
+											"description": "* Department id. (numeric)",
+											"type": "text"
+										},
+										{
+											"key": "start_date",
+											"value": "2024-01-01",
+											"description": "Project start date. (date)",
+											"type": "text"
+										},
+										{
+											"key": "end_date",
+											"value": "2025-05-31",
+											"description": "Project end date. (date)",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/projects",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"projects"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Mar 2025 21:00:19 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Sun, 16 Mar 2025 23:00:19 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": {\n        \"status\": [\n            \"The selected status is invalid.\"\n        ]\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Update project",
@@ -376,7 +1549,7 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/projects/:project-id?name=Project name&status=pending&department=Department name&start_date=2024-01-01&end_date=2025-05-31",
+							"raw": "{{baseUrl}}/api/v1/projects/:project-id?name=Updated project name&status=archived&department=Department name&start_date=2024-01-01&end_date=2025-05-31",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -389,23 +1562,28 @@
 							"query": [
 								{
 									"key": "name",
-									"value": "Project name"
+									"value": "Updated project name",
+									"description": "Project name. (string)"
 								},
 								{
 									"key": "status",
-									"value": "pending"
+									"value": "archived",
+									"description": "Project status. (`pending`, `in-progress`, `finished`, `archived`)"
 								},
 								{
 									"key": "department",
-									"value": "Department name"
+									"value": "Department name",
+									"description": "Department id. (numeric)"
 								},
 								{
 									"key": "start_date",
-									"value": "2024-01-01"
+									"value": "2024-01-01",
+									"description": "Project start date. (date)"
 								},
 								{
 									"key": "end_date",
-									"value": "2025-05-31"
+									"value": "2025-05-31",
+									"description": "Project end date. (date)"
 								}
 							],
 							"variable": [
@@ -417,7 +1595,108 @@
 						},
 						"description": "Update an existing project by its `id`, including its meta data. (department, start/end dates)"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/projects/:project-id?name=Updated project name&status=archived&department=Department name&start_date=2024-01-01&end_date=2025-05-31",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"projects",
+										":project-id"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Updated project name",
+											"description": "Project name. (string)"
+										},
+										{
+											"key": "status",
+											"value": "archived",
+											"description": "Project status. (`pending`, `in-progress`, `finished`, `archived`)"
+										},
+										{
+											"key": "department",
+											"value": "Department name",
+											"description": "Department id. (numeric)"
+										},
+										{
+											"key": "start_date",
+											"value": "2024-01-01",
+											"description": "Project start date. (date)"
+										},
+										{
+											"key": "end_date",
+											"value": "2025-05-31",
+											"description": "Project end date. (date)"
+										}
+									],
+									"variable": [
+										{
+											"key": "project-id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Mar 2025 21:02:21 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Sun, 16 Mar 2025 23:02:21 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 7,\n        \"name\": \"Updated project name\",\n        \"status\": \"archived\",\n        \"assignees\": [\n            {\n                \"id\": 1,\n                \"first_name\": \"Mina\",\n                \"last_name\": \"Alfy\",\n                \"email\": \"minaalfy8@gmail.com\"\n            },\n            {\n                \"id\": 3,\n                \"first_name\": \"Brannon\",\n                \"last_name\": \"Franecki\",\n                \"email\": \"maximus93@example.com\"\n            },\n            {\n                \"id\": 6,\n                \"first_name\": \"Abbigail\",\n                \"last_name\": \"Wiegand\",\n                \"email\": \"anabelle.roberts@example.net\"\n            },\n            {\n                \"id\": 9,\n                \"first_name\": \"Emmanuel\",\n                \"last_name\": \"Schamberger\",\n                \"email\": \"schulist.veronica@example.net\"\n            },\n            {\n                \"id\": 10,\n                \"first_name\": \"Daren\",\n                \"last_name\": \"Stanton\",\n                \"email\": \"beer.toney@example.net\"\n            }\n        ],\n        \"assignees_count\": 5,\n        \"department\": \"Department name\",\n        \"start_date\": \"2024-01-01T00:00:00.000000Z\",\n        \"end_date\": \"2025-05-31T00:00:00.000000Z\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Delete project",
@@ -444,7 +1723,145 @@
 						},
 						"description": "Delete an existing project by its `id.`"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost/api/v1/projects/:project-id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"projects",
+										":project-id"
+									],
+									"variable": [
+										{
+											"key": "project-id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Mar 2025 21:02:40 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Sun, 16 Mar 2025 23:02:40 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": null,\n    \"message\": \"Deleted successfully.\"\n}"
+						},
+						{
+							"name": "Failure",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/projects/:project-id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"projects",
+										":project-id"
+									],
+									"variable": [
+										{
+											"key": "project-id",
+											"value": "{{projectId}}"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Mar 2025 21:02:48 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Sun, 16 Mar 2025 23:02:48 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"error\": \"Resource Not Found.\",\n    \"message\": \"The requested resource does not exist.\"\n}"
+						}
+					]
 				}
 			],
 			"description": "Project endpoints. (full CRUD)\n\nYou must be logged-in to have access all project endpoints."
@@ -470,8 +1887,20 @@
 							],
 							"query": [
 								{
-									"key": "filter[project_id]",
+									"key": "page",
 									"value": "1",
+									"description": "Default: 1. (numeric)",
+									"disabled": true
+								},
+								{
+									"key": "per_page",
+									"value": "20",
+									"description": "Default: 10. (numeric)",
+									"disabled": true
+								},
+								{
+									"key": "filter[project_id]",
+									"value": "{{projectId}}",
 									"description": "Filter by project id. (numeric ~ exact id)",
 									"disabled": true
 								},
@@ -484,14 +1913,140 @@
 								{
 									"key": "filter[task_name]",
 									"value": "{{search}}",
-									"description": "Filter by task name.",
+									"description": "Filter by task name. (text)",
+									"disabled": true
+								},
+								{
+									"key": "filter[date]",
+									"value": "2015",
+									"description": "Filter by task date. (date ~ entered by the user)",
+									"disabled": true
+								},
+								{
+									"key": "filter[hours]",
+									"value": "",
+									"description": "Filter by task hourse. (numeric ~ exact)",
+									"disabled": true
+								},
+								{
+									"key": "filter[created_at]",
+									"value": "20:4",
+									"description": "Filter by task creation timestamp. (datetme)",
 									"disabled": true
 								}
 							]
 						},
-						"description": "List all projects:\n\n- sorted descendingly by `id`.\n    \n- supports filtration by `project_id`, `user_id`, and`task_name`. No need to use the full value for the needed projects, just a part of it.\n    \n- Currently, for regular users, results are forcibly filtered by his/her `id`. (numeric \\~ exact id)  \n    Later on, it is supposed that admins would be able to filter the results by user/assignee id."
+						"description": "List all projects:\n\n- sorted descendingly by `id`.\n    \n- supports filtration by `project_id`, `user_id`,`task_name, hours`, `date`, and `created_at`. No need to use the full value for the needed projects, just a part of it.\n    \n- Currently, for regular users, results are forcibly filtered by his/her `id`. (numeric \\~ exact id)  \n    Later on, it is supposed that admins would be able to filter the results by user/assignee id."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Filter logs by project, date, and name",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/timesheet/logs?page=1&per_page=20&filter[project_id]={{projectId}}&filter[task_name]={{search}}&filter[date]=2015",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"timesheet",
+										"logs"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"description": "Default: 1. (numeric)"
+										},
+										{
+											"key": "per_page",
+											"value": "20",
+											"description": "Default: 10. (numeric)"
+										},
+										{
+											"key": "filter[project_id]",
+											"value": "{{projectId}}",
+											"description": "Filter by project id. (numeric ~ exact id)"
+										},
+										{
+											"key": "filter[user_id]",
+											"value": "1",
+											"description": "Filter by user id. (numeric ~ exact id). Disabled for regular users.",
+											"disabled": true
+										},
+										{
+											"key": "filter[task_name]",
+											"value": "{{search}}",
+											"description": "Filter by task name. (text)"
+										},
+										{
+											"key": "filter[date]",
+											"value": "2015",
+											"description": "Filter by task date. (date ~ entered by the user)"
+										},
+										{
+											"key": "filter[hours]",
+											"value": "",
+											"description": "Filter by task hourse. (numeric ~ exact)",
+											"disabled": true
+										},
+										{
+											"key": "filter[created_at]",
+											"value": "20:4",
+											"description": "Filter by task creation timestamp. (datetme)",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Mar 2025 21:18:20 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Sun, 16 Mar 2025 23:18:20 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 63,\n            \"task_name\": \"Saepe et eum odit aliquid. Dolorem incidunt explicabo debitis et.\",\n            \"project_id\": 8,\n            \"user_id\": 8,\n            \"date\": \"2015-07-20\",\n            \"hours\": 71,\n            \"created_at\": \"2025-03-16T20:47:43.000000Z\"\n        },\n        {\n            \"id\": 14,\n            \"task_name\": \"Perferendis similique minus dolor et ea delectus voluptatem. Vel at qui sed est reiciendis.\",\n            \"project_id\": 8,\n            \"user_id\": 6,\n            \"date\": \"2015-04-20\",\n            \"hours\": 64,\n            \"created_at\": \"2025-03-16T20:47:43.000000Z\"\n        }\n    ],\n    \"links\": {\n        \"first\": \"http://localhost/api/v1/timesheet/logs?page=1\",\n        \"last\": \"http://localhost/api/v1/timesheet/logs?page=1\",\n        \"prev\": null,\n        \"next\": null\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 1,\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://localhost/api/v1/timesheet/logs?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"path\": \"http://localhost/api/v1/timesheet/logs\",\n        \"per_page\": 20,\n        \"to\": 2,\n        \"total\": 2\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Show timesheet log details",
@@ -519,7 +2074,77 @@
 						},
 						"description": "Get full details of a single project by its `id`."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Timesheet log details",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/timesheet/logs/:timesheet-log-id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"timesheet",
+										"logs",
+										":timesheet-log-id"
+									],
+									"variable": [
+										{
+											"key": "timesheet-log-id",
+											"value": "{{timesheetLogId}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Mar 2025 21:22:52 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Sun, 16 Mar 2025 23:22:52 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 77,\n        \"task_name\": \"Fugit rerum sapiente ut quas sunt. Enim voluptatem repellat sequi iste sed in. Placeat officia aliquam quaerat quis.\",\n        \"project_id\": 10,\n        \"user_id\": 9,\n        \"project\": {\n            \"id\": 10,\n            \"name\": \"Zoila Wolff\",\n            \"status\": \"finished\",\n            \"department\": \"Department 1\",\n            \"start_date\": \"1991-04-02T00:00:00.000000Z\",\n            \"end_date\": \"2021-08-07T00:00:00.000000Z\"\n        },\n        \"user\": {\n            \"id\": 9,\n            \"first_name\": \"Emmanuel\",\n            \"last_name\": \"Schamberger\",\n            \"email\": \"schulist.veronica@example.net\"\n        },\n        \"date\": \"2017-10-25\",\n        \"hours\": 72,\n        \"created_at\": \"2025-03-16T20:47:43.000000Z\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Create timesheet log",
@@ -569,7 +2194,190 @@
 						},
 						"description": "Log a task into **your** timesheet."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Failure: log into unassigned project",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "task_name",
+											"value": "Some description about what has been done in this task..",
+											"description": "* Task description. (free text)",
+											"type": "text"
+										},
+										{
+											"key": "project_id",
+											"value": "{{projectId}}",
+											"description": "* Project id the task is logged to. (numeric)",
+											"type": "text"
+										},
+										{
+											"key": "hours",
+											"value": "2",
+											"description": "* Hours spent in this task. (numeric)",
+											"type": "text"
+										},
+										{
+											"key": "date",
+											"value": "2025-05-31",
+											"description": "* Log date (date)",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/timesheet/logs",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"timesheet",
+										"logs"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Mar 2025 21:23:09 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Sun, 16 Mar 2025 23:23:09 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"error\": \"Forbidden\",\n    \"message\": \"You are not authorized to perform this action.\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "task_name",
+											"value": "Some description about what has been done in this task..",
+											"description": "* Task description. (free text)",
+											"type": "text"
+										},
+										{
+											"key": "project_id",
+											"value": "{{projectId}}",
+											"description": "* Project id the task is logged to. (numeric)",
+											"type": "text"
+										},
+										{
+											"key": "hours",
+											"value": "2",
+											"description": "* Hours spent in this task. (numeric)",
+											"type": "text"
+										},
+										{
+											"key": "date",
+											"value": "2025-05-31",
+											"description": "* Log date (date)",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/timesheet/logs",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"timesheet",
+										"logs"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Mar 2025 21:23:44 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Sun, 16 Mar 2025 23:23:44 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 101,\n        \"task_name\": \"Some description about what has been done in this task..\",\n        \"project_id\": \"2\",\n        \"user_id\": 1,\n        \"project\": {\n            \"id\": 2,\n            \"name\": \"Viola Kulas\",\n            \"status\": \"pending\",\n            \"department\": \"Department 3\",\n            \"start_date\": \"2019-10-18T00:00:00.000000Z\",\n            \"end_date\": \"2008-08-31T00:00:00.000000Z\"\n        },\n        \"user\": {\n            \"id\": 1,\n            \"first_name\": \"Mina\",\n            \"last_name\": \"Alfy\",\n            \"email\": \"minaalfy8@gmail.com\"\n        },\n        \"date\": \"2025-05-31\",\n        \"hours\": \"2\",\n        \"created_at\": \"2025-03-16T21:23:44.000000Z\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Update timesheet log",
@@ -646,7 +2454,126 @@
 						},
 						"description": "Update an existing timehseet log **of yours.**\n\nUnfortunately, you cannot change the `project_id`. To do so, just delete the unneeded log and re-create a new one on the right project using the [create endpoint](https://go.postman.co/workspace/549948de-ec54-4a7f-8aec-92fcc75914b3/documentation/40194412-577d4adf-ad5d-4b50-809f-3f986018c24f?entity=request-f0bc5c3c-305e-45eb-b43a-b582738a3e5c)."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "task_name",
+											"value": "Some description about what has been done in this task..",
+											"description": "* Task description. (free text)",
+											"type": "text"
+										},
+										{
+											"key": "project_id",
+											"value": "{{projectId}}",
+											"description": "* Project id the task is logged to. (numeric)",
+											"type": "text"
+										},
+										{
+											"key": "hours",
+											"value": "2",
+											"description": "* Hours spent in this task. (numeric)",
+											"type": "text"
+										},
+										{
+											"key": "date",
+											"value": "2025-05-31",
+											"description": "* Log date (date)",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/timesheet/logs/:timesheet-log-id?task_name=Updated task description..",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"timesheet",
+										"logs",
+										":timesheet-log-id"
+									],
+									"query": [
+										{
+											"key": "task_name",
+											"value": "Updated task description..",
+											"description": "Task description. (free text)"
+										},
+										{
+											"key": "hours",
+											"value": "2",
+											"description": "Hours spent in this task. (numeric)",
+											"disabled": true
+										},
+										{
+											"key": "date",
+											"value": "2025-05-31",
+											"description": "Hours spent in this task. (numeric)",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "timesheet-log-id",
+											"value": "{{timesheetLogId}}",
+											"description": "Timesheet log id. (numeric)"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Mar 2025 21:24:53 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Sun, 16 Mar 2025 23:24:53 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 101,\n        \"task_name\": \"Updated task description..\",\n        \"project_id\": 2,\n        \"user_id\": 1,\n        \"project\": {\n            \"id\": 2,\n            \"name\": \"Viola Kulas\",\n            \"status\": \"pending\",\n            \"department\": \"Department 3\",\n            \"start_date\": \"2019-10-18T00:00:00.000000Z\",\n            \"end_date\": \"2008-08-31T00:00:00.000000Z\"\n        },\n        \"user\": {\n            \"id\": 1,\n            \"first_name\": \"Mina\",\n            \"last_name\": \"Alfy\",\n            \"email\": \"minaalfy8@gmail.com\"\n        },\n        \"date\": \"2025-05-31\",\n        \"hours\": 2,\n        \"created_at\": \"2025-03-16T21:23:44.000000Z\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Delete timesheet log",
@@ -675,7 +2602,218 @@
 						},
 						"description": "Delete an existing timesheet logs **of yours** by its `id`."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/timesheet/logs/:timesheet-log-id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"timesheet",
+										"logs",
+										":timesheet-log-id"
+									],
+									"variable": [
+										{
+											"key": "timesheet-log-id",
+											"value": "{{timesheetLogId}}",
+											"description": "Timesheet log id. (numeric)"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Mar 2025 21:25:09 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Sun, 16 Mar 2025 23:25:09 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": null,\n    \"message\": \"Deleted successfully.\"\n}"
+						},
+						{
+							"name": "Failure: non-existing id",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/timesheet/logs/:timesheet-log-id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"timesheet",
+										"logs",
+										":timesheet-log-id"
+									],
+									"variable": [
+										{
+											"key": "timesheet-log-id",
+											"value": "{{timesheetLogId}}",
+											"description": "Timesheet log id. (numeric)"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Mar 2025 21:25:19 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Sun, 16 Mar 2025 23:25:19 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"error\": \"Resource Not Found.\",\n    \"message\": \"The requested resource does not exist.\"\n}"
+						},
+						{
+							"name": "Failure: delete others' logs",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/timesheet/logs/:timesheet-log-id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"timesheet",
+										"logs",
+										":timesheet-log-id"
+									],
+									"variable": [
+										{
+											"key": "timesheet-log-id",
+											"value": "{{timesheetLogId}}",
+											"description": "Timesheet log id. (numeric)"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Mar 2025 21:26:27 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Sun, 16 Mar 2025 23:26:27 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"error\": \"Forbidden\",\n    \"message\": \"You are not authorized to perform this action.\"\n}"
+						}
+					]
 				}
 			],
 			"description": "Timesheet logs/records endpoints. (full CRUD)\n\nYou must be logged-in to have access all timesheet endpoints."
