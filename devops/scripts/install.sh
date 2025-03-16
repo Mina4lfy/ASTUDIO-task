@@ -64,6 +64,8 @@ fi
 # Do Laravel stuff.
 php artisan storage:link --force
 php artisan key:generate
-php artisan migrate # --seed
+php artisan migrate:fresh --seed
+php artisan passport:keys --force
+php artisan passport:client --password --no-interaction
 
 # chmod -R 777 storage public

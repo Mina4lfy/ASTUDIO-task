@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\File;
 
 # Controllers.
+use App\Http\Controllers\API\Auth\AuthController;
 use App\Http\Controllers\API\Project\ProjectsController;
 
 /*
@@ -16,13 +18,22 @@ use App\Http\Controllers\API\Project\ProjectsController;
 |
 */
 
-# Version 1.
-Route::prefix('v1')->group(function () {
+Route::middleware('api')->group(function () {
 
-    # Guarded by auth.
-    // Route::middleware('auth:api')->group(function () {
+    # Loop on all directories under `routes/api`. Each subdir represents a version. (e.g. namespaced /api/v1/)
+    $versionDirs = File::directories(__DIR__ . '/api');
+    foreach ($versionDirs as $versionDir) {
 
-    # Projects.
-    Route::apiResource('projects', ProjectsController::class);
-    // });
+        # Get files of each version.
+        $versionFiles = File::allFiles($versionDir);
+        $version = basename($versionDir);
+
+        # Register version routes, namespaced with their verions.
+        Route::prefix($version)->group(function () use ($versionFiles) {
+            foreach ($versionFiles as $file) {
+                include_once $file;
+            }
+        });
+    }
+
 });

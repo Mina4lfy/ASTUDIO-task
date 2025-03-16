@@ -3,7 +3,7 @@
 set -eux
 
 # Copy .env.example to .env if not exists.
-[ ! -f .env ] && cp .env.example .env
+[ ! -f .env ] && cp .env.docker.example .env
 
 # Check if "--hard" is present in the arguments
 if [ "$#" -eq 0 ]; then
