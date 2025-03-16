@@ -33,11 +33,18 @@ class DatabaseSeeder extends Seeder
     private const TIMESHEET_LOGS_COUNT = 100;
 
     /**
-     * Available project department options
+     * Departments to use when seeding projects. (text attribute)
      *
      * @const array
      */
-    private const DEPARTMENTS = ['Department 1', 'Department 2', 'Department 3'];
+    private const PROJECT_DEPARTMENTS = ['Department 1', 'Department 2', 'Department 3'];
+
+    /**
+     * Available options for project statuses. (select attribute)
+     *
+     * @const array
+     */
+    private const PROJECT_STATUSES = ['pending', 'in-progress', 'finished', 'archived'];
 
 
     # Runer
@@ -56,6 +63,8 @@ class DatabaseSeeder extends Seeder
         $this->seedProjectAssignees($users, $projects);
 
         $this->seedTimesheetLogs();
+
+        echo "✓ Database seeded successfully.\r\n\r\n";
     }
 
 
@@ -97,17 +106,27 @@ class DatabaseSeeder extends Seeder
     private function seedAttributes(): Collection
     {
         $attributes[] = $departmentAttribute = app('rinvex.attributes.attribute')->updateOrCreate([
-            'slug' => 'department',
+            'slug' => 'status',
         ], [
-            'description' => 'Department that this project belongs to.',
+            'description' => 'Project status. (pending/in-progress/finished/archived)',
             'type' => 'select',
-            'name' => 'Department',
+            'name' => 'Status',
             'is_required' => true,
             'entities' => [Project::class],
         ]);
 
         # Add department options.
-        $departmentAttribute->addOptions(static::DEPARTMENTS);
+        $departmentAttribute->addOptions(static::PROJECT_STATUSES);
+
+        $attributes[] = app('rinvex.attributes.attribute')->updateOrCreate([
+            'slug' => 'department',
+        ], [
+            'description' => 'Department that this project belongs to.',
+            'type' => 'text',
+            'name' => 'Department',
+            'is_required' => true,
+            'entities' => [Project::class],
+        ]);
 
         $attributes[] = app('rinvex.attributes.attribute')->updateOrCreate([
             'slug' => 'start_date',
@@ -140,7 +159,8 @@ class DatabaseSeeder extends Seeder
     {
         foreach ($projects as $project) {
             $project
-                ->setAttribute('department', strval(rand(1, count(static::DEPARTMENTS))))
+                ->setAttribute('department', fake()->randomElement(static::PROJECT_DEPARTMENTS))
+                ->setAttribute('status', rand(1, count(static::PROJECT_STATUSES)))
                 ->setAttribute('start_date', fake()->date())
                 ->setAttribute('end_date', fake()->date())
                 ->save();

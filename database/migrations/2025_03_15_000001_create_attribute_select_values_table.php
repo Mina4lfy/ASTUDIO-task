@@ -18,13 +18,13 @@ return new class extends Migration {
         Schema::create(config('rinvex.attributes.tables.attribute_select_values'), function (Blueprint $table) {
             $table->id();
 
-            # Attribute.
-            $table->unsignedBigInteger('attribute_id');
-            $table->foreign('attribute_id')->references('id')->on(config('rinvex.attributes.tables.attributes'))->onDelete('cascade')->onUpdate('cascade');
-
             # Content. (Reference to `attributes_options.id`)
             $table->unsignedBigInteger('content');
             $table->foreign('content')->references('id')->on(config('rinvex.attributes.tables.attributes_options'))->onUpdate('cascade')->onDelete('cascade');
+
+            # Attribute.
+            $table->unsignedBigInteger('attribute_id');
+            $table->foreign('attribute_id')->references('id')->on(config('rinvex.attributes.tables.attributes'))->onDelete('cascade')->onUpdate('cascade');
 
             $table->morphs('entity');
             $table->timestamps();

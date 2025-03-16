@@ -27,7 +27,6 @@ class Project extends BaseModel
      */
     protected $fillable = [
         'name',
-        'status',
     ];
 
     /**
@@ -72,9 +71,9 @@ class Project extends BaseModel
 
             'name'          => fn($q, $value) => $q->where('name', 'like', "%$value%"),
 
-            'status'        => fn($q, $value) => $q->where('status', 'like', "%$value%"),
+            'department'    => fn($q, $value) => $q->whereHas('department', fn($subQ) => $subQ->where('content', 'like', "%$value%")),
 
-            'department'    => fn($q, $value) => $q->whereHas('department', fn ($subQ) => $subQ->whereHas('option', fn ($subSubQ) => $subSubQ->where('content', 'like', "%$value%"))),
+            'status'        => fn($q, $value) => $q->whereHas('status', fn ($subQ) => $subQ->whereHas('option', fn ($subSubQ) => $subSubQ->where('content', 'like', "%$value%"))),
 
             'start_date'    => fn($q, $value) => $q->whereHas('start_date', fn($subQ) => $subQ->where('content', 'like', "%$value%")),
 
