@@ -2,70 +2,37 @@
 
 set -eux
 
-# Removed cached css/js/json files.
-function remove_compiled_files()
-{
-  find public/css/* ! -type f -exec rm -f {} +
-  find public/js/* ! -name *.min.js -type f -exec rm -f {} +
-}
-
-# Install composer & npm packages for development.
-function install_npm_and_composer_packges_for_dev()
+# Install composer & npm packages.
+function install_dependencies()
 {
   composer install
   npm install && npm run build
 }
 
-# Install composer & npm packages for production. 
-function install_npm_and_composer_packges_for_prod()
+# Initialize Laravel project.
+function laravel_init()
 {
-  composer install --no-dev --ignore-platform-reqs --optimize-autoloader
-  npm install --prod && npm run build
+  php artisan storage:link --force
+  php artisan key:generate
+  php artisan migrate:fresh --seed
 }
 
-# Switch on given options.
-if [ ! "$#" -eq 0 ]; then
-  for opt in "$@"
-  do
-    case $opt in
+# Generate passport private/public keys and create `password` client.
+function generate_passport_keys()
+{
+  php artisan passport:keys --force
+  php artisan passport:client --password --no-interaction
+}
 
-      --remove-compiled)
-        # remove_compiled_files
-      ;;
+# Here starts everything.
+function main()
+{
+  set -eux
 
-      --dev)
-        # remove_compiled_files
-        install_npm_and_composer_packges_for_dev
-      ;;
+  reset
 
-      --prod)
-        running_for_production=true
-        # remove_compiled_files
-        install_npm_and_composer_packges_for_prod
-      ;;
-
-      # --build)
-      #   if [[ -v running_for_production ]]; then
-      #     echo -e "\nYou cannot build the database unless you are running this script with --dev due to missing dependencies\n"
-      #     exit 1
-      #   fi
-      #   php artisan migrate:fresh --seed
-      # ;;
-
-    esac
-  done
-fi
-
-# install composer packages if not already installed.
-if [ ! -d "vendor" ] || [ -z "$(ls -A vendor)" ]; then
-  composer install
-fi
-
-# Do Laravel stuff.
-php artisan storage:link --force
-php artisan key:generate
-php artisan migrate:fresh --seed
-php artisan passport:keys --force
-php artisan passport:client --password --no-interaction
-
-# chmod -R 777 storage public
+  install_dependencies
+  laravel_init
+  generate_passport_keys
+}
+main "$@"; exit
