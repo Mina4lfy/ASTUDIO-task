@@ -6,7 +6,6 @@ namespace App\Models\EAV\Type;
 
 use Rinvex\Attributes\Models\Value;
 use App\Models\EAV\Type\Common\Option;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 
 /**
  * Rinvex\Attributes\Models\Type\Text.
@@ -51,7 +50,7 @@ class Select extends Value
         $this->setTable(config('rinvex.attributes.tables.attribute_select_values'));
 
         $this->mergeRules([
-            'content'       => 'required|string|exists:' . config('rinvex.attributes.tables.attributes_options') . ',id',
+            'content'       => 'required', // |string|exists:' . config('rinvex.attributes.tables.attributes_options') . ',id',
             'attribute_id'  => 'required|integer|exists:' . config('rinvex.attributes.tables.attributes') . ',id',
             'entity_id'     => 'required|integer',
             'entity_type'   => 'required|string|strip_tags|max:150',
@@ -60,17 +59,6 @@ class Select extends Value
         parent::__construct($attributes);
     }
 
-    /**
-     * Selected option.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<Option, Select>
-     */
-    public function option()
-    {
-        return $this->hasOne(Option::class, 'id', 'content');
-    }
-
-    /**
 
     # mutators.
 
@@ -78,10 +66,18 @@ class Select extends Value
      * Update `content` to be the referenced option `content` instead of its `id`.
      *
      * @param string $content
-     *
-    public function _getContentAttribute(null|string|int $content): ?string
+     */
+    public function getContentAttribute(null|string|int $content): ?string
     {
-        return is_numeric($content) ? $this->option?->content : $content;
+        // return is_numeric($content) ? $this->option?->content : $content;
+        return is_numeric($content) ? Option::find($content)?->content : $content;
     }
-    */
+
+
+    # relationships.
+
+    public function option()
+    {
+        return $this->hasOne(Option::class, 'id', 'content');
+    }
 }
