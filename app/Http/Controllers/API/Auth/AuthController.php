@@ -55,6 +55,11 @@ class AuthController extends Controller
       'scope'         => '',
     ]);
 
+    # Return error, if any.
+    if ($response->json('error')) {
+      return response()->json($response->json(), Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
     return $response->json();
   }
 

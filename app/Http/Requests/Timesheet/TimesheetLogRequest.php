@@ -67,6 +67,7 @@ class TimesheetLogRequest extends BaseRequest
             'hours' => [
                 $requiredOnCreate,
                 'numeric',
+                'min:1',
             ],
         ];
     }

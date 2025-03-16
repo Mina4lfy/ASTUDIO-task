@@ -12,8 +12,10 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         # Debugbar.
-        $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-        $loader->alias('Debugbar', \Barryvdh\Debugbar\Facades\Debugbar::class);
+        if (env('APP_DEBUG')) {
+            $loader = \Illuminate\Foundation\AliasLoader::getInstance();
+            $loader->alias('Debugbar', \Barryvdh\Debugbar\Facades\Debugbar::class);
+        }
     }
 
     /**
