@@ -20,7 +20,10 @@
 
     xcopy .env.example .env
     php artisan key:generate
-    php artisan storage:link    
+    php artisan storage:link
+
+    php artisan passport:keys --force
+    php artisan passport:client --password --no-interaction
     ```
 3. <span id="configure-dotenv">Configure `.env` file with your new settings</span>
     - Modify your database connection creds:
@@ -37,7 +40,7 @@
 ### Docker
 
 Simply run: `./devops/scripts/docker-restart.sh --reinstall`.<br/>
-You may need to change the following ports or versions in `.env`:
+<i>You may need to change the following ports or versions in `.env`:</i>
 ```
 DOCKER_APPSERVER_PORT="80"
 DOCKER_DATABASE_PORT="3306"
@@ -48,6 +51,6 @@ DOCKER_PHP_VERSION="8.2"
 
 ### Update your passport client id and secret
 
-
 After the installation script is finished, copy the client id and secret to your `.env` vars as follows.
-![Screenshot from 2025-03-16 15-08-19](https://github.com/user-attachments/assets/73e196ad-9794-4dcb-9c66-629906889a77)
+![image](https://github.com/user-attachments/assets/23dd3806-6863-4f2e-9c37-6b202f2c6f90)
+
