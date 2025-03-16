@@ -74,7 +74,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
-    # appends
+    # appends.
 
     /**
      * {@inheritDoc}
@@ -89,7 +89,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
-    # relationships
+    # relationships.
 
     /**
      * Timesheet logs added by the current user
@@ -109,5 +109,21 @@ class User extends Authenticatable implements MustVerifyEmail
     public function assignedProjects(): BelongsToMany
     {
         return $this->belongsToMany(Project::class);
+    }
+
+
+    # methods.
+
+    /**
+     * Check if user is one of a project assignees.
+     *
+     * @param int|Project $project
+     * @return bool
+     */
+    public function isAssignedToProject(int|Project $project): bool
+    {
+        return is_numeric($project)
+            ? !!$this->assignedProjects()->find($project)
+            : $project->hasAssignee($this->id);
     }
 }

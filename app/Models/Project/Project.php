@@ -101,4 +101,17 @@ class Project extends BaseModel
 
         return !!ProjectUser::upsert($projectAssignees, ['project_id', 'user_id']);
     }
+
+    /**
+     * Check if project has a specific assignee.
+     *
+     * @param int|Project $project
+     * @return bool
+     */
+    public function hasAssignee(int|User $user): bool
+    {
+        return is_numeric($user)
+            ? !!$this->assignees()->find($user)
+            : $user->isAssignedToProject($this->id);
+    }
 }

@@ -19,7 +19,7 @@ class {{ class }} extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param \App\Http\Requests\Request $request
+     * @param {{ rootNamespace }}Http\Requests\Request $request
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index(Request $request)
@@ -34,7 +34,7 @@ class {{ class }} extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\BaseModel $model
+     * @param {{ model }} $model
      * @return BaseResource
      */
     public function show({{ model }} ${{ modelVariable }})
@@ -45,7 +45,7 @@ class {{ class }} extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \App\Http\Requests\Project\ProjectRequest $request
+     * @param {{ storeRequest }} $request
      * @return BaseResource
      */
     public function store({{ storeRequest }} $request)
@@ -58,8 +58,8 @@ class {{ class }} extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \App\Http\Requests\Project\ProjectRequest $request
-     * @param \App\Models\BaseModel $model
+     * @param {{ updateRequest }} $request
+     * @param {{ model }} $model
      * @return BaseResource
      */
     public function update({{ updateRequest }} $request, {{ model }} ${{ modelVariable }})
@@ -72,11 +72,13 @@ class {{ class }} extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\BaseModel $model
+     * @param {{ model }} $model
      * @return BaseResource
      */
     public function destroy({{ model }} ${{ modelVariable }})
     {
-        return response()->json(['data' => null]);
+        ${{ modelVariable }}->delete();
+
+        return response()->json(['data' => null, 'message' => 'Deleted successfully.']);
     }
 }

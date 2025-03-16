@@ -7,7 +7,11 @@ use App\Models\BaseModel;
 use App\Models\User;
 use App\Models\Project\Project;
 
+# traits
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+# eloquent
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class TimesheetLog extends BaseModel
@@ -36,5 +40,24 @@ class TimesheetLog extends BaseModel
     public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);
+    }
+
+
+    # search
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function search(null|array $params, ?Builder $query = null): Builder
+    {
+        return static::filter([
+
+            'project_id'    => fn($q, $id) => $q->where('project_id', $id),
+
+            'assignee_id'   => fn($q, $id) => $q->where('user_id', $id),
+
+            'task_name'     => fn($q, $value) => $q->where('task_name', 'like', "%$value%"),
+
+        ], $params, $query)->orderBy('id', 'DESC');
     }
 }
