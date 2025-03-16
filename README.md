@@ -45,3 +45,9 @@ DOCKER_DBADMIN_PORT="88"
 DOCKER_APP_VERSION="1.0.0"
 DOCKER_PHP_VERSION="8.2"
 ```
+
+### Update your passport client id and secret
+
+
+After the installation script is finished, copy the client id and secret to your `.env` vars as follows.
+![Screenshot from 2025-03-16 15-08-19](https://github.com/user-attachments/assets/73e196ad-9794-4dcb-9c66-629906889a77)
