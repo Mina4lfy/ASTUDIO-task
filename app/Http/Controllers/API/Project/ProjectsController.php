@@ -83,6 +83,6 @@ class ProjectsController extends Controller
     {
         $project->delete();
 
-        return response()->json(['data' => null]);
+        return response()->json(['data' => null, 'message' => 'Deleted successfully.']);
     }
 }
