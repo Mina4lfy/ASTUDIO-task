@@ -19,6 +19,7 @@ class Attribute extends VendorAttribute
             'integer'   => \Rinvex\Attributes\Models\Type\Integer::class,
             'varchar'   => \Rinvex\Attributes\Models\Type\Varchar::class,
             'datetime'  => \Rinvex\Attributes\Models\Type\Datetime::class,
+            'date'      => \App\Models\EAV\Type\Date::class,
         ]);
     }
 }

@@ -103,7 +103,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'start_date',
         ], [
             'description' => 'Start date.',
-            'type' => 'datetime',
+            'type' => 'date',
             'name' => 'Start date',
             'entities' => [Project::class],
         ]);
@@ -112,7 +112,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'end_date',
         ], [
             'description' => 'End date.',
-            'type' => 'datetime',
+            'type' => 'date',
             'name' => 'End date',
             'entities' => [Project::class],
         ]);
