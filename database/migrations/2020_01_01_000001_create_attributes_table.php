@@ -17,7 +17,7 @@ class CreateAttributesTable extends Migration
     {
         Schema::create(config('rinvex.attributes.tables.attributes'), function (Blueprint $table) {
             // Columns
-            $table->increments('id');
+            $table->id();
             $table->string('slug');
             $table->json('name');
             $table->json('description')->nullable();

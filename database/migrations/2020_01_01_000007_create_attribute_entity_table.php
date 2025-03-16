@@ -17,9 +17,8 @@ class CreateAttributeEntityTable extends Migration
     {
         Schema::create(config('rinvex.attributes.tables.attribute_entity'), function (Blueprint $table) {
             // Columns
-            $table->integer('attribute_id')->unsigned();
-            $table->string('entity_type');
-            $table->integer('entity_id')->unsigned()->nullable(); // TODO: Making this nullable for now as it breaks the basic features
+            $table->unsignedBigInteger('attribute_id')->autoIncrement();
+            $table->nullableMorphs('entity'); // TODO: Making this nullable for now as it breaks the basic features
             $table->timestamps();
 
             // Indexes

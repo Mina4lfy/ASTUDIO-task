@@ -17,11 +17,10 @@ class CreateAttributeDateTimeValuesTable extends Migration
     {
         Schema::create(config('rinvex.attributes.tables.attribute_datetime_values'), function (Blueprint $table) {
             // Columns
-            $table->increments('id');
+            $table->id();
             $table->dateTime('content');
-            $table->integer('attribute_id')->unsigned();
-            $table->integer('entity_id')->unsigned();
-            $table->string('entity_type');
+            $table->unsignedBigInteger('attribute_id');
+            $table->morphs('entity');
             $table->timestamps();
 
             // Indexes

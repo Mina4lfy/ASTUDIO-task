@@ -19,9 +19,8 @@ return new class extends Migration {
             // Columns
             $table->increments('id');
             $table->date('content');
-            $table->integer('attribute_id')->unsigned();
-            $table->integer('entity_id')->unsigned();
-            $table->string('entity_type');
+            $table->unsignedBigInteger('attribute_id');
+            $table->morphs('entity');
             $table->timestamps();
 
             // Indexes
