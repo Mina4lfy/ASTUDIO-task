@@ -32,7 +32,7 @@ else
     --reinstall)
       docker compose down --volumes --remove-orphans --rmi local
       docker compose up -d
-      sleep 5
+      sleep 10
       docker exec laravel-app ./devops/scripts/install.sh
       break
       ;;

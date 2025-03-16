@@ -57,7 +57,7 @@ services:
         user: laravel
         uid: 1000
       context: .
-      dockerfile: ./devops/php/Dockerfile
+      dockerfile: ./devops/laravel/Dockerfile
     environment:
       SERVICE_NAME: app
       SERVICE_TAGS: local
@@ -70,6 +70,26 @@ services:
       - webserver
     networks:
       - laravel-network
+    tty: "true"
+    restart: unless-stopped
+
+  supervisor:
+    container_name: laravel-supervisor
+    image: laravel/supervisord:${DOCKER_APP_VERSION:-1.0.0}
+    build:
+      args:
+        PHP_VERSION: ${DOCKER_PHP_VERSION:-8.2}
+      context: .
+      dockerfile: ./devops/supervisord/Dockerfile
+    volumes:
+      - ./:/var/www/html
+      - ./devops/supervisord/supervisord.conf:/etc/supervisor/supervisord.conf
+      - ./devops/logs/supervisord/:/etc/supervisor/logs/
+    depends_on:
+      - app
+    networks:
+      - laravel-network
+    # network_mode: host
     tty: "true"
     restart: unless-stopped
 
