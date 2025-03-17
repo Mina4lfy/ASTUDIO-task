@@ -12,15 +12,16 @@ class ProjectResource extends BaseResource
      */
     public function toArray(Request $request): array
     {
-        return [
+        return array_merge([
             'id'                => $this->id,
             'name'              => $this->name,
-            'department'        => $this->department,
             'status'            => $this->status,
-            'start_date'        => $this->start_date,
-            'end_date'          => $this->end_date,
+            
+        # Get dynamic attributes,
+        ], $this->getDynamicAttributes(), [
+
             'assignees'         => ProjectAssigneeResource::collection($this->whenLoaded('assignees')),
             'assignees_count'   => $this->whenCounted('assignees'),
-        ];
+        ]);
     }
 }

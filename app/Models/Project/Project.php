@@ -10,7 +10,7 @@ use App\Models\Timesheet\TimesheetLog;
 
 # traits
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use \Rinvex\Attributes\Traits\Attributable;
+use App\Traits\Attributable;
 
 # eloquent.
 use Illuminate\Database\Eloquent\Builder;
