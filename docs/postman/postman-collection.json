@@ -182,45 +182,44 @@
 									"formdata": [
 										{
 											"key": "first_name",
-											"value": "Mina",
+											"value": "{{firstName}}",
 											"description": "* User's first name.",
 											"type": "text"
 										},
 										{
 											"key": "last_name",
-											"value": "Alfy",
+											"value": "{{last_name}}",
 											"description": "* User's last/family name.",
 											"type": "text"
 										},
 										{
 											"key": "email",
-											"value": "minaalfy8@gmail.com",
+											"value": "{{email}}",
 											"description": "* User email address to be then used for login.",
 											"type": "text"
 										},
 										{
 											"key": "password",
-											"value": "newPassw&rd1",
+											"value": "{{password}}",
 											"description": "* Password. (min: 8 characters)",
 											"type": "text"
 										},
 										{
 											"key": "password_confirmation",
-											"value": "newPassw&rd1",
+											"value": "{{password}}",
 											"description": "* Same as `Password` for confirmation.",
 											"type": "text"
 										}
 									]
 								},
 								"url": {
-									"raw": "http://localhost/api/v1/auth/register",
-									"protocol": "http",
+									"raw": "{{baseUrl}}/api/{{version}}/auth/register",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
 									"path": [
 										"api",
-										"v1",
+										"{{version}}",
 										"auth",
 										"register"
 									]
@@ -416,27 +415,26 @@
 									"formdata": [
 										{
 											"key": "email",
-											"value": "minaalfy8@gmail.com",
+											"value": "{{email}}",
 											"description": "* User email address to be then used for login.",
 											"type": "text"
 										},
 										{
 											"key": "password",
-											"value": "newPassw&rd1",
+											"value": "{{password}}",
 											"description": "* Password. (min: 8 characters)",
 											"type": "text"
 										}
 									]
 								},
 								"url": {
-									"raw": "http://localhost/api/v1/auth/login",
-									"protocol": "http",
+									"raw": "{{baseUrl}}/api/{{version}}/auth/login",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
 									"path": [
 										"api",
-										"v1",
+										"{{version}}",
 										"auth",
 										"login"
 									]
@@ -593,14 +591,13 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "http://localhost/api/v1/auth/logout",
-									"protocol": "http",
+									"raw": "{{baseUrl}}/api/{{version}}/auth/logout",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
 									"path": [
 										"api",
-										"v1",
+										"{{version}}",
 										"auth",
 										"logout"
 									]
@@ -717,6 +714,1388 @@
 			]
 		},
 		{
+			"name": "Attributes",
+			"item": [
+				{
+					"name": "Attribute options",
+					"item": [
+						{
+							"name": "List attribute options",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/attributes/:attribute-id/options?filter[content]={{search}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"attributes",
+										":attribute-id",
+										"options"
+									],
+									"query": [
+										{
+											"key": "filter[content]",
+											"value": "{{search}}"
+										}
+									],
+									"variable": [
+										{
+											"key": "attribute-id",
+											"value": "{{attributeId}}",
+											"description": "Attribute id. (numeric)"
+										}
+									]
+								},
+								"description": "List all projects:\n\n- sorted descendingly by `id`.\n    \n- supports filtration by `name`, `status`, `department` name, `start_date`, and `end_date`. No need to use the full value for the needed projects, just a part of it."
+							},
+							"response": [
+								{
+									"name": "Fetch project departments (options)",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/attributes/:attribute-id/options",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"attributes",
+												":attribute-id",
+												"options"
+											],
+											"variable": [
+												{
+													"key": "attribute-id",
+													"value": "{{attributeId}}",
+													"description": "Attribute id. (numeric)"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.26.2"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.28"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 17 Mar 2025 01:29:12 GMT"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Set-Cookie",
+											"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Mon, 17 Mar 2025 03:29:12 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"content\": \"Software Development (1)\"\n        },\n        {\n            \"id\": 2,\n            \"content\": \"Marketing (2)\"\n        },\n        {\n            \"id\": 3,\n            \"content\": \"Security (3)\"\n        },\n        {\n            \"id\": 4,\n            \"content\": \"Business Development\"\n        }\n    ],\n    \"links\": {\n        \"first\": \"http://localhost/api/v1/attributes/1/options?page=1\",\n        \"last\": \"http://localhost/api/v1/attributes/1/options?page=1\",\n        \"prev\": null,\n        \"next\": null\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 1,\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://localhost/api/v1/attributes/1/options?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"path\": \"http://localhost/api/v1/attributes/1/options\",\n        \"per_page\": 10,\n        \"to\": 4,\n        \"total\": 4\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Show attribute option",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/attributes/:attribute-id/options/:option-id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"attributes",
+										":attribute-id",
+										"options",
+										":option-id"
+									],
+									"variable": [
+										{
+											"key": "attribute-id",
+											"value": "{{attributeId}}",
+											"description": "Attribute id. (numeric)"
+										},
+										{
+											"key": "option-id",
+											"value": "{{attributeOptionId}}",
+											"description": "Attribute option id. (numeric)"
+										}
+									]
+								},
+								"description": "Get full details of a single project by its `id`.\n\nFor example, it includes the project assignees. (id, first name, last name, and email)"
+							},
+							"response": [
+								{
+									"name": "Get single department (option) details",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/attributes/:attribute-id/options/:option-id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"attributes",
+												":attribute-id",
+												"options",
+												":option-id"
+											],
+											"variable": [
+												{
+													"key": "attribute-id",
+													"value": "{{attributeId}}",
+													"description": "Attribute id. (numeric)"
+												},
+												{
+													"key": "option-id",
+													"value": "{{attributeOptionId}}",
+													"description": "Attribute option id. (numeric)"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.26.2"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.28"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 17 Mar 2025 01:29:55 GMT"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Set-Cookie",
+											"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Mon, 17 Mar 2025 03:29:55 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"id\": 2,\n        \"content\": \"Marketing (2)\",\n        \"attribute\": {\n            \"id\": 1,\n            \"name\": \"Department\",\n            \"slug\": \"department\",\n            \"type\": \"select\",\n            \"description\": \"Department that project belongs to.\",\n            \"sort_order\": 1,\n            \"updated_at\": \"2025-03-17T00:09:38.000000Z\",\n            \"created_at\": \"2025-03-17T00:09:38.000000Z\",\n            \"entities\": [\n                \"App\\\\Models\\\\Project\\\\Project\"\n            ]\n        }\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Create attribute option",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "content",
+											"value": "Business Development",
+											"description": "Option value.",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/attributes/:attribute-id/options",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"attributes",
+										":attribute-id",
+										"options"
+									],
+									"variable": [
+										{
+											"key": "attribute-id",
+											"value": "{{attributeId}}",
+											"description": "Attribute id. (numeric)"
+										}
+									]
+								},
+								"description": "Create a project, including its meta data. (department, start/end dates)"
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "content",
+													"value": "Business Development",
+													"description": "Option value.",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/attributes/:attribute-id/options",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"attributes",
+												":attribute-id",
+												"options"
+											],
+											"variable": [
+												{
+													"key": "attribute-id",
+													"value": "{{attributeId}}",
+													"description": "Attribute id. (numeric)"
+												}
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.26.2"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.28"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 17 Mar 2025 01:30:41 GMT"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Set-Cookie",
+											"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Mon, 17 Mar 2025 03:30:41 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"id\": 5,\n        \"content\": \"Business Development\",\n        \"attribute\": {\n            \"id\": 1,\n            \"name\": \"Department\",\n            \"slug\": \"department\",\n            \"type\": \"select\",\n            \"description\": \"Department that project belongs to.\",\n            \"sort_order\": 1,\n            \"updated_at\": \"2025-03-17T00:09:38.000000Z\",\n            \"created_at\": \"2025-03-17T00:09:38.000000Z\",\n            \"entities\": [\n                \"App\\\\Models\\\\Project\\\\Project\"\n            ]\n        }\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Update attribute option",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/attributes/:attribute-id/options/:option-id?content=New option content..",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"attributes",
+										":attribute-id",
+										"options",
+										":option-id"
+									],
+									"query": [
+										{
+											"key": "content",
+											"value": "New option content..",
+											"description": "Option content."
+										}
+									],
+									"variable": [
+										{
+											"key": "attribute-id",
+											"value": "{{attributeId}}",
+											"description": "Attribute id to update. (numeric)"
+										},
+										{
+											"key": "option-id",
+											"value": "{{attributeOptionId}}",
+											"description": "Attribute option id. (numeric)"
+										}
+									]
+								},
+								"description": "Create a project, including its meta data. (department, start/end dates)"
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/attributes/:attribute-id/options/:option-id?content=New option content..",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"attributes",
+												":attribute-id",
+												"options",
+												":option-id"
+											],
+											"query": [
+												{
+													"key": "content",
+													"value": "New option content..",
+													"description": "Option content."
+												}
+											],
+											"variable": [
+												{
+													"key": "attribute-id",
+													"value": "{{attributeId}}",
+													"description": "Attribute id to update. (numeric)"
+												},
+												{
+													"key": "option-id",
+													"value": "{{attributeOptionId}}",
+													"description": "Attribute option id. (numeric)"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.26.2"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.28"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 17 Mar 2025 01:35:04 GMT"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Set-Cookie",
+											"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Mon, 17 Mar 2025 03:35:04 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"id\": 2,\n        \"content\": \"New option content..\",\n        \"attribute\": {\n            \"id\": 1,\n            \"name\": \"Department\",\n            \"slug\": \"department\",\n            \"type\": \"select\",\n            \"description\": \"Department that project belongs to.\",\n            \"sort_order\": 1,\n            \"updated_at\": \"2025-03-17T00:09:38.000000Z\",\n            \"created_at\": \"2025-03-17T00:09:38.000000Z\",\n            \"entities\": [\n                \"App\\\\Models\\\\Project\\\\Project\"\n            ]\n        }\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete attribute option",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/attributes/:attribute-id/options/:option-id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"attributes",
+										":attribute-id",
+										"options",
+										":option-id"
+									],
+									"variable": [
+										{
+											"key": "attribute-id",
+											"value": "{{attributeId}}",
+											"description": "Attribute id to update. (numeric)"
+										},
+										{
+											"key": "option-id",
+											"value": "{{attributeOptionId}}",
+											"description": "Attribute option id. (numeric)"
+										}
+									]
+								},
+								"description": "Delete an existing project by its `id.`"
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/attributes/:attribute-id/options/:option-id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"attributes",
+												":attribute-id",
+												"options",
+												":option-id"
+											],
+											"variable": [
+												{
+													"key": "attribute-id",
+													"value": "{{attributeId}}",
+													"description": "Attribute id to update. (numeric)"
+												},
+												{
+													"key": "option-id",
+													"value": "{{attributeOptionId}}",
+													"description": "Attribute option id. (numeric)"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.26.2"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.28"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 17 Mar 2025 01:35:20 GMT"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Set-Cookie",
+											"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Mon, 17 Mar 2025 03:35:20 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": null,\n    \"message\": \"Deleted successfully.\"\n}"
+								}
+							]
+						}
+					],
+					"description": "Attribute endpoints. (full CRUD)\n\nYou must be logged-in to have access all attributes endpoints."
+				},
+				{
+					"name": "List attributes (+ filtration)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/attributes?filter[type]=date",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"attributes"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Default; 1. (numeric)",
+									"disabled": true
+								},
+								{
+									"key": "per_page",
+									"value": "10",
+									"description": "Default: 10. (numeric)",
+									"disabled": true
+								},
+								{
+									"key": "filter[name]",
+									"value": "{{search}}",
+									"description": "Filter by attribute name. (text)",
+									"disabled": true
+								},
+								{
+									"key": "filter[slug]",
+									"value": "{{search}}",
+									"description": "Filter by attribute slug. (text)",
+									"disabled": true
+								},
+								{
+									"key": "filter[description]",
+									"value": "{{search}}",
+									"description": "Filter by attribute description. (text)",
+									"disabled": true
+								},
+								{
+									"key": "filter[type]",
+									"value": "date",
+									"description": "Filter by attribute type. (text/varchar/boolean/integer/select/datetime/date)"
+								}
+							]
+						},
+						"description": "List all projects:\n\n- sorted descendingly by `id`.\n    \n- supports filtration by `name`, `status`, `department` name, `start_date`, and `end_date`. No need to use the full value for the needed projects, just a part of it."
+					},
+					"response": [
+						{
+							"name": "Filter attributes by type (date)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/attributes?filter[type]=date",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"attributes"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"description": "Default; 1. (numeric)",
+											"disabled": true
+										},
+										{
+											"key": "per_page",
+											"value": "10",
+											"description": "Default: 10. (numeric)",
+											"disabled": true
+										},
+										{
+											"key": "filter[name]",
+											"value": "{{search}}",
+											"description": "Filter by attribute name. (text)",
+											"disabled": true
+										},
+										{
+											"key": "filter[slug]",
+											"value": "{{search}}",
+											"description": "Filter by attribute slug. (text)",
+											"disabled": true
+										},
+										{
+											"key": "filter[description]",
+											"value": "{{search}}",
+											"description": "Filter by attribute description. (text)",
+											"disabled": true
+										},
+										{
+											"key": "filter[type]",
+											"value": "date",
+											"description": "Filter by attribute type. (text/varchar/boolean/integer/select/datetime/date)"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Mar 2025 01:47:45 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Mon, 17 Mar 2025 03:47:45 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"name\": \"End date\",\n            \"slug\": \"end_date\",\n            \"type\": \"date\",\n            \"description\": \"End date.\",\n            \"sort_order\": 3,\n            \"updated_at\": \"2025-03-17T00:09:38.000000Z\",\n            \"created_at\": \"2025-03-17T00:09:38.000000Z\",\n            \"entities\": [\n                \"App\\\\Models\\\\Project\\\\Project\"\n            ]\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Start date\",\n            \"slug\": \"start_date\",\n            \"type\": \"date\",\n            \"description\": \"Start date.\",\n            \"sort_order\": 2,\n            \"updated_at\": \"2025-03-17T00:09:38.000000Z\",\n            \"created_at\": \"2025-03-17T00:09:38.000000Z\",\n            \"entities\": [\n                \"App\\\\Models\\\\Project\\\\Project\"\n            ]\n        }\n    ],\n    \"links\": {\n        \"first\": \"http://localhost/api/v1/attributes?page=1\",\n        \"last\": \"http://localhost/api/v1/attributes?page=1\",\n        \"prev\": null,\n        \"next\": null\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 1,\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://localhost/api/v1/attributes?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"path\": \"http://localhost/api/v1/attributes\",\n        \"per_page\": 10,\n        \"to\": 2,\n        \"total\": 2\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Show attribute details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/attributes/:attribute-id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"attributes",
+								":attribute-id"
+							],
+							"variable": [
+								{
+									"key": "attribute-id",
+									"value": "{{attributeId}}",
+									"description": "Attribute id. (numeric)"
+								}
+							]
+						},
+						"description": "Get full details of a single project by its `id`.\n\nFor example, it includes the project assignees. (id, first name, last name, and email)"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/attributes/:attribute-id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"attributes",
+										":attribute-id"
+									],
+									"variable": [
+										{
+											"key": "attribute-id",
+											"value": "{{attributeId}}",
+											"description": "Attribute id. (numeric)"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Mar 2025 01:48:22 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Mon, 17 Mar 2025 03:48:22 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Department\",\n        \"slug\": \"department\",\n        \"type\": \"select\",\n        \"description\": \"Department that project belongs to.\",\n        \"sort_order\": 1,\n        \"updated_at\": \"2025-03-17T00:09:38.000000Z\",\n        \"created_at\": \"2025-03-17T00:09:38.000000Z\",\n        \"entities\": [\n            \"App\\\\Models\\\\Project\\\\Project\"\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create attribute",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "slug",
+									"value": "client-name",
+									"description": "Attriibute machine name. (string)",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Client",
+									"description": "* Attribute readable/displayed name. (text)",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "text",
+									"description": "* Attribute type. (text/varchar/boolean/integer/select/datetime/date)",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Client name.",
+									"description": "Attribute description. (text)",
+									"type": "text"
+								},
+								{
+									"key": "sort_order",
+									"value": "1",
+									"description": "Attribute order between other attributes. (number)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "group",
+									"value": "",
+									"description": "Attribute group. (text)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "is_required",
+									"value": "0",
+									"description": "Requires a value? (not nullable? ~ boolean)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "is_collection",
+									"value": "0",
+									"description": "Has multiple values? (boolean)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "default",
+									"value": "Default",
+									"description": "Default value.",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "entities[]",
+									"value": "App\\Models\\Project\\Project",
+									"description": "Entities to use the attribute. (string ~ collection)",
+									"type": "text"
+								},
+								{
+									"key": "entities[]",
+									"value": "App\\Models\\Timesheet\\TimesheetLog",
+									"description": "Entities to use the attribute. (string ~ collection)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "entities",
+									"value": "test",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/attributes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"attributes"
+							]
+						},
+						"description": "Create a project, including its meta data. (department, start/end dates)"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "slug",
+											"value": "client-name",
+											"description": "Attriibute machine name. (string)",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "Client",
+											"description": "* Attribute readable/displayed name. (text)",
+											"type": "text"
+										},
+										{
+											"key": "type",
+											"value": "text",
+											"description": "* Attribute type. (text/varchar/boolean/integer/select/datetime/date)",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "Client name.",
+											"description": "Attribute description. (text)",
+											"type": "text"
+										},
+										{
+											"key": "sort_order",
+											"value": "1",
+											"description": "Attribute order between other attributes. (number)",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "group",
+											"value": "",
+											"description": "Attribute group. (text)",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "is_required",
+											"value": "0",
+											"description": "Requires a value? (not nullable? ~ boolean)",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "is_collection",
+											"value": "0",
+											"description": "Has multiple values? (boolean)",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "default",
+											"value": "Default",
+											"description": "Default value.",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "entities[]",
+											"value": "App\\Models\\Project\\Project",
+											"description": "Entities to use the attribute. (string ~ collection)",
+											"type": "text"
+										},
+										{
+											"key": "entities[]",
+											"value": "App\\Models\\Timesheet\\TimesheetLog",
+											"description": "Entities to use the attribute. (string ~ collection)",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "entities",
+											"value": "test",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/attributes",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"attributes"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Mar 2025 01:48:51 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Mon, 17 Mar 2025 03:48:51 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 5,\n        \"name\": \"Client\",\n        \"slug\": \"client_name_1\",\n        \"type\": \"text\",\n        \"description\": \"Client name.\",\n        \"sort_order\": 5,\n        \"updated_at\": \"2025-03-17T01:48:51.000000Z\",\n        \"created_at\": \"2025-03-17T01:48:51.000000Z\",\n        \"entities\": [\n            \"App\\\\Models\\\\Project\\\\Project\"\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update attribute",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/attributes/:attribute-id?name=Updated attribute name&slug=updated-custom-attribute&description=Some description of the custom attribute.&sort_order=1&group=&type=text&is_required=1&is_collection=0&default=Default",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"attributes",
+								":attribute-id"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Updated attribute name",
+									"description": "* Attribute readable/displayed name. (text)"
+								},
+								{
+									"key": "slug",
+									"value": "updated-custom-attribute",
+									"description": "Attriibute machine name. (string)"
+								},
+								{
+									"key": "description",
+									"value": "Some description of the custom attribute.",
+									"description": "Attribute description. (text)"
+								},
+								{
+									"key": "sort_order",
+									"value": "1",
+									"description": "Attribute order between other attributes. (number)"
+								},
+								{
+									"key": "group",
+									"value": "",
+									"description": "Attribute group. (text)"
+								},
+								{
+									"key": "type",
+									"value": "text",
+									"description": "Attribute type. (text/varchar/boolean/integer/select/datetime/date)"
+								},
+								{
+									"key": "is_required",
+									"value": "1",
+									"description": "Requires a value? (not nullable? ~ boolean)"
+								},
+								{
+									"key": "is_collection",
+									"value": "0",
+									"description": "Has multiple values? (boolean)"
+								},
+								{
+									"key": "default",
+									"value": "Default",
+									"description": "Default value."
+								}
+							],
+							"variable": [
+								{
+									"key": "attribute-id",
+									"value": "{{attributeId}}",
+									"description": "Attribute id to update. (numeric)"
+								}
+							]
+						},
+						"description": "Create a project, including its meta data. (department, start/end dates)"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/attributes/:attribute-id?name=Updated attribute name&slug=updated-custom-attribute&description=Some description of the custom attribute.&sort_order=1&group=&type=text&is_required=1&is_collection=0&default=Default",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"attributes",
+										":attribute-id"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Updated attribute name",
+											"description": "* Attribute readable/displayed name. (text)"
+										},
+										{
+											"key": "slug",
+											"value": "updated-custom-attribute",
+											"description": "Attriibute machine name. (string)"
+										},
+										{
+											"key": "description",
+											"value": "Some description of the custom attribute.",
+											"description": "Attribute description. (text)"
+										},
+										{
+											"key": "sort_order",
+											"value": "1",
+											"description": "Attribute order between other attributes. (number)"
+										},
+										{
+											"key": "group",
+											"value": "",
+											"description": "Attribute group. (text)"
+										},
+										{
+											"key": "type",
+											"value": "text",
+											"description": "Attribute type. (text/varchar/boolean/integer/select/datetime/date)"
+										},
+										{
+											"key": "is_required",
+											"value": "1",
+											"description": "Requires a value? (not nullable? ~ boolean)"
+										},
+										{
+											"key": "is_collection",
+											"value": "0",
+											"description": "Has multiple values? (boolean)"
+										},
+										{
+											"key": "default",
+											"value": "Default",
+											"description": "Default value."
+										}
+									],
+									"variable": [
+										{
+											"key": "attribute-id",
+											"value": "{{attributeId}}",
+											"description": "Attribute id to update. (numeric)"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Mar 2025 01:49:10 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Mon, 17 Mar 2025 03:49:10 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Updated attribute name\",\n        \"slug\": \"updated_custom_attribute\",\n        \"type\": \"text\",\n        \"description\": \"Some description of the custom attribute.\",\n        \"sort_order\": 1,\n        \"updated_at\": \"2025-03-17T01:49:10.000000Z\",\n        \"created_at\": \"2025-03-17T00:09:38.000000Z\",\n        \"entities\": [\n            \"App\\\\Models\\\\Project\\\\Project\"\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete attribute",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/attributes/:attribute-id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"attributes",
+								":attribute-id"
+							],
+							"variable": [
+								{
+									"key": "attribute-id",
+									"value": "{{attributeId}}",
+									"description": "Attribute id. (numeric)"
+								}
+							]
+						},
+						"description": "Delete an existing project by its `id.`"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/attributes/:attribute-id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"attributes",
+										":attribute-id"
+									],
+									"variable": [
+										{
+											"key": "attribute-id",
+											"value": "{{attributeId}}",
+											"description": "Attribute id. (numeric)"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Mar 2025 01:49:20 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Mon, 17 Mar 2025 03:49:20 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": null,\n    \"message\": \"Deleted successfully.\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Attribute endpoints. (full CRUD)\n\nYou must be logged-in to have access all attributes endpoints."
+		},
+		{
 			"name": "Projects",
 			"item": [
 				{
@@ -787,10 +2166,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost/api/v1/projects?page=2&per_page=3",
-									"protocol": "http",
+									"raw": "{{baseUrl}}/api/v1/projects?page=2&per_page=3",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
 									"path": [
 										"api",
@@ -810,7 +2188,7 @@
 										},
 										{
 											"key": "filter[name]",
-											"value": "dolore",
+											"value": "{{search}}",
 											"description": "Filter by project name.",
 											"disabled": true
 										},
@@ -1343,6 +2721,102 @@
 							"body": "{\n    \"data\": {\n        \"id\": 19,\n        \"name\": \"Project name\",\n        \"status\": \"pending\",\n        \"assignees\": [],\n        \"assignees_count\": 0,\n        \"department\": \"Department 4\",\n        \"start_date\": \"2024-01-01T00:00:00.000000Z\",\n        \"end_date\": \"2025-05-31T00:00:00.000000Z\"\n    }\n}"
 						},
 						{
+							"name": "Failure: wrong status (select) meta data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Project name",
+											"description": "* Project name. (string)",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "not-pending",
+											"description": "* Project status. (`pending`, `in-progress`, `finished`, `archived`)",
+											"type": "text"
+										},
+										{
+											"key": "department",
+											"value": "Department 4",
+											"description": "* Department id. (numeric)",
+											"type": "text"
+										},
+										{
+											"key": "start_date",
+											"value": "2024-01-01",
+											"description": "Project start date. (date)",
+											"type": "text"
+										},
+										{
+											"key": "end_date",
+											"value": "2025-05-31",
+											"description": "Project end date. (date)",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/projects",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"projects"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Mar 2025 21:00:19 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Sun, 16 Mar 2025 23:00:19 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": {\n        \"status\": [\n            \"The selected status is invalid.\"\n        ]\n    }\n}"
+						},
+						{
 							"name": "Failure: missing required meta data",
 							"originalRequest": {
 								"method": "POST",
@@ -1438,102 +2912,6 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"errors\": {\n        \"department\": [\n            \"The department field is required.\"\n        ]\n    }\n}"
-						},
-						{
-							"name": "Failure: wrong status (select) meta data",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "name",
-											"value": "Project name",
-											"description": "* Project name. (string)",
-											"type": "text"
-										},
-										{
-											"key": "status",
-											"value": "not-pending",
-											"description": "* Project status. (`pending`, `in-progress`, `finished`, `archived`)",
-											"type": "text"
-										},
-										{
-											"key": "department",
-											"value": "Department 4",
-											"description": "* Department id. (numeric)",
-											"type": "text"
-										},
-										{
-											"key": "start_date",
-											"value": "2024-01-01",
-											"description": "Project start date. (date)",
-											"type": "text"
-										},
-										{
-											"key": "end_date",
-											"value": "2025-05-31",
-											"description": "Project end date. (date)",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{baseUrl}}/api/v1/projects",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"projects"
-									]
-								}
-							},
-							"status": "Unprocessable Content",
-							"code": 422,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Server",
-									"value": "nginx/1.26.2"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "X-Powered-By",
-									"value": "PHP/8.2.28"
-								},
-								{
-									"key": "Cache-Control",
-									"value": "no-cache, private"
-								},
-								{
-									"key": "Date",
-									"value": "Sun, 16 Mar 2025 21:00:19 GMT"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Set-Cookie",
-									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Sun, 16 Mar 2025 23:00:19 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"errors\": {\n        \"status\": [\n            \"The selected status is invalid.\"\n        ]\n    }\n}"
 						}
 					]
 				},
@@ -1547,7 +2925,7 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/projects/:project-id?name=Updated project name&status=archived&department={{departmentId}}&start_date=2024-01-01&end_date=2025-05-31",
+							"raw": "{{baseUrl}}/api/v1/projects/:project-id?name=Updated project name&status=archived&client_name=Client name&department={{departmentId}}&start_date=2024-01-01&end_date=2025-05-31",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -1567,6 +2945,11 @@
 									"key": "status",
 									"value": "archived",
 									"description": "Project status. (`pending`, `in-progress`, `finished`, `archived`)"
+								},
+								{
+									"key": "client_name",
+									"value": "Client name",
+									"description": "Client that project belongs to. (text)"
 								},
 								{
 									"key": "department",
@@ -1604,10 +2987,9 @@
 									"formdata": []
 								},
 								"url": {
-									"raw": "http://localhost/api/v1/projects/:project-id?name=Updated project name&status=archived&department=Department name&start_date=2024-01-01&end_date=2025-05-31",
-									"protocol": "http",
+									"raw": "{{baseUrl}}/api/v1/projects/:project-id?name=Updated project name&status=archived&department=Department name&start_date=2024-01-01&end_date=2025-05-31",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
 									"path": [
 										"api",
@@ -1645,7 +3027,7 @@
 									"variable": [
 										{
 											"key": "project-id",
-											"value": "1"
+											"value": "{{projectId}}"
 										}
 									]
 								}
@@ -1728,10 +3110,9 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost/api/v1/projects/:project-id",
-									"protocol": "http",
+									"raw": "{{baseUrl}}/api/v1/projects/:project-id",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
 									"path": [
 										"api",
@@ -1742,7 +3123,7 @@
 									"variable": [
 										{
 											"key": "project-id",
-											"value": "1"
+											"value": "{{projectId}}"
 										}
 									]
 								}
@@ -2194,97 +3575,6 @@
 					},
 					"response": [
 						{
-							"name": "Failure: log into unassigned project",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "task_name",
-											"value": "Some description about what has been done in this task..",
-											"description": "* Task description. (free text)",
-											"type": "text"
-										},
-										{
-											"key": "project_id",
-											"value": "{{projectId}}",
-											"description": "* Project id the task is logged to. (numeric)",
-											"type": "text"
-										},
-										{
-											"key": "hours",
-											"value": "2",
-											"description": "* Hours spent in this task. (numeric)",
-											"type": "text"
-										},
-										{
-											"key": "date",
-											"value": "2025-05-31",
-											"description": "* Log date (date)",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{baseUrl}}/api/v1/timesheet/logs",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"timesheet",
-										"logs"
-									]
-								}
-							},
-							"status": "Forbidden",
-							"code": 403,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Server",
-									"value": "nginx/1.26.2"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "X-Powered-By",
-									"value": "PHP/8.2.28"
-								},
-								{
-									"key": "Cache-Control",
-									"value": "no-cache, private"
-								},
-								{
-									"key": "Date",
-									"value": "Sun, 16 Mar 2025 21:23:09 GMT"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Set-Cookie",
-									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Sun, 16 Mar 2025 23:23:09 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": \"error\",\n    \"error\": \"Forbidden\",\n    \"message\": \"You are not authorized to perform this action.\"\n}"
-						},
-						{
 							"name": "Success",
 							"originalRequest": {
 								"method": "POST",
@@ -2374,6 +3664,97 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"data\": {\n        \"id\": 101,\n        \"task_name\": \"Some description about what has been done in this task..\",\n        \"project_id\": \"2\",\n        \"user_id\": 1,\n        \"project\": {\n            \"id\": 2,\n            \"name\": \"Viola Kulas\",\n            \"status\": \"pending\",\n            \"department\": \"Department 3\",\n            \"start_date\": \"2019-10-18T00:00:00.000000Z\",\n            \"end_date\": \"2008-08-31T00:00:00.000000Z\"\n        },\n        \"user\": {\n            \"id\": 1,\n            \"first_name\": \"Mina\",\n            \"last_name\": \"Alfy\",\n            \"email\": \"minaalfy8@gmail.com\"\n        },\n        \"date\": \"2025-05-31\",\n        \"hours\": \"2\",\n        \"created_at\": \"2025-03-16T21:23:44.000000Z\"\n    }\n}"
+						},
+						{
+							"name": "Failure: log into unassigned project",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "task_name",
+											"value": "Some description about what has been done in this task..",
+											"description": "* Task description. (free text)",
+											"type": "text"
+										},
+										{
+											"key": "project_id",
+											"value": "{{projectId}}",
+											"description": "* Project id the task is logged to. (numeric)",
+											"type": "text"
+										},
+										{
+											"key": "hours",
+											"value": "2",
+											"description": "* Hours spent in this task. (numeric)",
+											"type": "text"
+										},
+										{
+											"key": "date",
+											"value": "2025-05-31",
+											"description": "* Log date (date)",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/timesheet/logs",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"timesheet",
+										"logs"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.26.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Mar 2025 21:23:09 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Sun, 16 Mar 2025 23:23:09 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"error\": \"Forbidden\",\n    \"message\": \"You are not authorized to perform this action.\"\n}"
 						}
 					]
 				},
