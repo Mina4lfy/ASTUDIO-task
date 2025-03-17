@@ -82,7 +82,7 @@
 		},
 		{
 			"key": "attributeId",
-			"value": "",
+			"value": "1",
 			"type": "default",
 			"enabled": true
 		},
@@ -91,9 +91,21 @@
 			"value": "dolore",
 			"type": "default",
 			"enabled": true
+		},
+		{
+			"key": "departmentId",
+			"value": "1",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "department",
+			"value": "Development",
+			"type": "default",
+			"enabled": true
 		}
 	],
 	"_postman_variable_scope": "environment",
-	"_postman_exported_at": "2025-03-16T18:37:09.792Z",
+	"_postman_exported_at": "2025-03-17T00:05:28.071Z",
 	"_postman_exported_using": "Postman/11.35.4"
 }

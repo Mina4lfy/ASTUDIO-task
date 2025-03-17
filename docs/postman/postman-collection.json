@@ -717,15 +717,15 @@
 			]
 		},
 		{
-			"name": "Projects API (requires authentiction)",
+			"name": "Projects",
 			"item": [
 				{
-					"name": "List projects (supports filtration)",
+					"name": "List projects (+ filtration)",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/projects",
+							"raw": "{{baseUrl}}/api/v1/projects?filter[department]={{departmentId}}",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -750,31 +750,30 @@
 								{
 									"key": "filter[name]",
 									"value": "{{search}}",
-									"description": "Filter by project name.",
+									"description": "Filter by project name. (text)",
 									"disabled": true
 								},
 								{
 									"key": "filter[status]",
 									"value": "in-progress",
-									"description": "Filter by project status.",
+									"description": "Filter by project status. (pending/in-progress/finished/archived)",
 									"disabled": true
 								},
 								{
 									"key": "filter[department]",
-									"value": "2",
-									"description": "Filter by project department name.",
-									"disabled": true
+									"value": "{{departmentId}}",
+									"description": "Filter by project department id. (numeric)"
 								},
 								{
 									"key": "filter[start_date]",
 									"value": "20",
-									"description": "Filter by project start date.",
+									"description": "Filter by project start date. (date)",
 									"disabled": true
 								},
 								{
 									"key": "filter[end_date]",
 									"value": "20",
-									"description": "Filter by project end date.",
+									"description": "Filter by project end date. (date)",
 									"disabled": true
 								}
 							]
@@ -1122,15 +1121,14 @@
 					},
 					"response": [
 						{
-							"name": "Project details",
+							"name": "Fetch project details",
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost/api/v1/projects/:project-id",
-									"protocol": "http",
+									"raw": "{{baseUrl}}/api/v1/projects/:project-id",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
 									"path": [
 										"api",
@@ -1141,7 +1139,7 @@
 									"variable": [
 										{
 											"key": "project-id",
-											"value": "1",
+											"value": "{{projectId}}",
 											"description": "Project iid. (numeric)"
 										}
 									]
@@ -1177,7 +1175,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Sun, 16 Mar 2025 20:24:27 GMT"
+									"value": "Sun, 16 Mar 2025 22:28:30 GMT"
 								},
 								{
 									"key": "Access-Control-Allow-Origin",
@@ -1185,11 +1183,11 @@
 								},
 								{
 									"key": "Set-Cookie",
-									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Sun, 16 Mar 2025 22:24:27 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+									"value": "astudio_session=nvKHxdzcNg7nbeaRN9HQh26DNsGhkN7oNZE7yu1E; expires=Mon, 17 Mar 2025 00:28:30 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"data\": {\n        \"id\": 7,\n        \"name\": \"Dario Boyer\",\n        \"status\": \"archived\",\n        \"assignees\": [\n            {\n                \"id\": 4,\n                \"first_name\": \"Concepcion\",\n                \"last_name\": \"Mraz\",\n                \"email\": \"veum.tracey@example.net\"\n            }\n        ],\n        \"assignees_count\": 1,\n        \"department\": \"Department 1\",\n        \"start_date\": \"1988-01-16T00:00:00.000000Z\",\n        \"end_date\": \"2009-12-05T00:00:00.000000Z\"\n    }\n}"
+							"body": "{\n    \"data\": {\n        \"id\": 2,\n        \"name\": \"Georgiana Wilkinson\",\n        \"department\": \"Marketing (2)\",\n        \"status\": \"in-progress\",\n        \"start_date\": \"1975-05-10T00:00:00.000000Z\",\n        \"end_date\": \"1984-10-11T00:00:00.000000Z\",\n        \"assignees\": [\n            {\n                \"id\": 1,\n                \"first_name\": \"Mina\",\n                \"last_name\": \"Alfy\",\n                \"email\": \"minaalfy8@gmail.com\"\n            },\n            {\n                \"id\": 2,\n                \"first_name\": \"Marjorie\",\n                \"last_name\": \"Lindgren\",\n                \"email\": \"qorn@example.net\"\n            },\n            {\n                \"id\": 3,\n                \"first_name\": \"Christian\",\n                \"last_name\": \"Stark\",\n                \"email\": \"crooks.magnolia@example.com\"\n            },\n            {\n                \"id\": 4,\n                \"first_name\": \"Dessie\",\n                \"last_name\": \"Mertz\",\n                \"email\": \"forest72@example.org\"\n            },\n            {\n                \"id\": 5,\n                \"first_name\": \"Alyce\",\n                \"last_name\": \"Harvey\",\n                \"email\": \"pearlie57@example.org\"\n            },\n            {\n                \"id\": 6,\n                \"first_name\": \"Norris\",\n                \"last_name\": \"Jast\",\n                \"email\": \"mercedes97@example.com\"\n            },\n            {\n                \"id\": 7,\n                \"first_name\": \"Donald\",\n                \"last_name\": \"Leannon\",\n                \"email\": \"mayra12@example.net\"\n            },\n            {\n                \"id\": 9,\n                \"first_name\": \"Clifton\",\n                \"last_name\": \"Littel\",\n                \"email\": \"enos.erdman@example.org\"\n            },\n            {\n                \"id\": 10,\n                \"first_name\": \"Astrid\",\n                \"last_name\": \"Lebsack\",\n                \"email\": \"farrell.justyn@example.org\"\n            }\n        ],\n        \"assignees_count\": 9\n    }\n}"
 						}
 					]
 				},
@@ -1209,14 +1207,14 @@
 								},
 								{
 									"key": "status",
-									"value": "not-pending",
+									"value": "pending",
 									"description": "* Project status. (`pending`, `in-progress`, `finished`, `archived`)",
 									"type": "text"
 								},
 								{
 									"key": "department",
-									"value": "Department 4",
-									"description": "* Department id. (numeric)",
+									"value": "{{departmentId}}",
+									"description": "* Department id. (department attribute id)",
 									"type": "text"
 								},
 								{
@@ -1269,7 +1267,7 @@
 										},
 										{
 											"key": "department",
-											"value": "Department 4",
+											"value": "1",
 											"description": "* Department id. (numeric)",
 											"type": "text"
 										},
@@ -1549,7 +1547,7 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/projects/:project-id?name=Updated project name&status=archived&department=Department name&start_date=2024-01-01&end_date=2025-05-31",
+							"raw": "{{baseUrl}}/api/v1/projects/:project-id?name=Updated project name&status=archived&department={{departmentId}}&start_date=2024-01-01&end_date=2025-05-31",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -1572,8 +1570,8 @@
 								},
 								{
 									"key": "department",
-									"value": "Department name",
-									"description": "Department id. (numeric)"
+									"value": "{{departmentId}}",
+									"description": "Department id. (department attribute id)"
 								},
 								{
 									"key": "start_date",
@@ -1867,10 +1865,10 @@
 			"description": "Project endpoints. (full CRUD)\n\nYou must be logged-in to have access all project endpoints."
 		},
 		{
-			"name": "Timesheets logs/records API (requires authentiction)",
+			"name": "Timesheets logs/records",
 			"item": [
 				{
-					"name": "List timesheet logs (supports filtration)",
+					"name": "List timesheet logs (+ filtration)",
 					"request": {
 						"method": "GET",
 						"header": [],
