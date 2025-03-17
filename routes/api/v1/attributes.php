@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\Attribute\AttributesController;
+use App\Http\Controllers\API\Attribute\AttributeOptionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,5 +19,8 @@ Route::middleware('auth:api')->group(function () {
 
     # Attributes.
     Route::apiResource('attributes', AttributesController::class);
+
+    # Attribute options.
+    Route::apiResource('attributes/{attribute}/options', AttributeOptionsController::class);
 
 });
