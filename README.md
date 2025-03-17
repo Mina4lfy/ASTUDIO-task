@@ -59,7 +59,7 @@ After the installation script is finished, copy the client id and secret to your
 
 <br/>
 
-## #2, #3, #4 API Documentation
+## #2 API Documentation
 
 I am not a Swagger fan! You can import the Postman collection from `docs/postman/postman-collection.json` and environment, `docs/postman/postman-environment.json`.<br/>
 Documentation is accessible at <a href="https://documenter.getpostman.com/view/40194412/2sAYkBtMtV">https://documenter.getpostman.com/view/40194412/2sAYkBtMtV</a>.
@@ -72,7 +72,10 @@ In the collection, you will find example requests/responses for:
 
 <br/>
 
+### #3 SQL Dump & Credentials
+
 Database dump can be found in `./astudio.sql.gz`.<br/>
+
 Testing credentials are:
 ```
 username: minaalfy8@gmail.com
@@ -81,7 +84,7 @@ password: newPassw&rd1
 
 <br/>
 
-## More Context
+## #4 More Context
 
 - Instead of re-inventing the wheel, I used the <a href="https://github.com/rinvex/laravel-attributes">`rinvex/laravel-attributes`</a> package to handle the EAV stuff, It has a quite good structre and implements some of the needed features here. So, I extended it with the missing attribute types, `Date` and `Select`.<br/>
 Modifications were made to get it (and its dependencies) compatible with PHP >= 8.2 and Laravel 12. Packages can be found on packagist <a href="https://packagist.org/packages/mina4lfy/laravel-attributes">@1</a> and <a href="https://packagist.org/packages/mina4lfy/laravel-support">@2</a>.
