@@ -61,5 +61,5 @@ After the installation script is finished, copy the client id and secret to your
 
 ## #2 API Documentation
 
-Sorry, not a Swagger fan! You can import the Postman collection from `docs/postman/postman-collection.json` and environment, `docs/postman/postman-environment.json`.<br/>
+I am not a Swagger fan! You can import the Postman collection from `docs/postman/postman-collection.json` and environment, `docs/postman/postman-environment.json`.<br/>
 Documentation is accessible at <a href="https://documenter.getpostman.com/view/40194412/2sAYkBtMtV">https://documenter.getpostman.com/view/40194412/2sAYkBtMtV</a>.

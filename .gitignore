@@ -25,3 +25,4 @@ yarn-error.log
 # stubs
 /stubs/*
 !/stubs/controller.model.api.stub
+!/stubs/request.stub

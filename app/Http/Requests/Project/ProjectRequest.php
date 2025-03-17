@@ -9,7 +9,7 @@ use App\Enum\ProjectStatus;
 class ProjectRequest extends BaseRequest
 {
     /**
-     * Timesheet log from bound params.
+     * Project from bound params.
      *
      * @var null|Project
      */

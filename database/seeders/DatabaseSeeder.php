@@ -101,7 +101,7 @@ class DatabaseSeeder extends Seeder
         $attributes[] = $departmentAttribute = app('rinvex.attributes.attribute')->updateOrCreate([
             'slug' => 'department',
         ], [
-            'description' => 'Department that this project belongs to.',
+            'description' => 'Department that project belongs to.',
             'type' => 'select',
             'name' => 'Department',
             'is_required' => true,
