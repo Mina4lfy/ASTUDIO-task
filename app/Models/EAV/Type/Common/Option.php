@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace App\Models\EAV\Type\Common;
 
+# models.
+use App\Models\BaseModel;
 use App\Models\EAV\Attribute;
-use Illuminate\Database\Eloquent\Model;
 
-class Option extends Model
+# eloquent.
+use Illuminate\Contracts\Database\Query\Builder;
+
+class Option extends BaseModel
 {
     /**
      * {@inheritdoc}
@@ -47,5 +51,20 @@ class Option extends Model
     public function attribute()
     {
         return $this->belongsTo(Attribute::class);
+    }
+
+
+    # search
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function search(null|array $params, ?Builder $query = null): Builder
+    {
+        return static::filter([
+
+            'content' => fn($q, $value) => $q->where('content', 'like', "%$value%"),
+
+        ], $params, $query)->orderBy('id', 'DESC');
     }
 }

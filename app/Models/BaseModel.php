@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\ModelHasSearch;
+use App\Traits\Searchable;
 
 abstract class BaseModel extends Model
 {
-    use ModelHasSearch;
+    use Searchable;
 }

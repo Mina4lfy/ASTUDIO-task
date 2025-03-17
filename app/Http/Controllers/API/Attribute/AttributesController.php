@@ -25,7 +25,7 @@ class AttributesController extends Controller
      */
     public function index(Request $request)
     {
-        $query = app('rinvex.attributes.attribute')->query();
+        $query = app('rinvex.attributes.attribute')->search($request->filter);
 
         $attributes = $query->paginate($request->per_page);
 

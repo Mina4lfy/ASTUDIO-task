@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 # requests.
 use App\Http\Requests\Request;
+use App\Http\Requests\Attribute\AttributeOptionRequest;
 
 # models.
 use App\Models\EAV\Type\Common\Option;
@@ -44,7 +45,7 @@ class AttributeOptionsController extends Controller
      */
     public function index(Attribute $attribute, Request $request)
     {
-        $query = $attribute->options();
+        $query = Option::search($request->filter, $attribute->options());
 
         $options = $query->paginate($request->per_page);
 
@@ -72,11 +73,11 @@ class AttributeOptionsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \App\Models\EAV\Attribute $attribute
-     * @param \App\Http\Requests\Request $request
+     * @param \App\Http\Requests\Attribute\AttributeOptionRequest $request
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      * @return \App\Http\Resources\Attribute\AttributeOptionResource
      */
-    public function store(Attribute $attribute, Request $request)
+    public function store(Attribute $attribute, AttributeOptionRequest $request)
     {
         $option = $attribute->options()->create($request->all());
 
@@ -87,11 +88,11 @@ class AttributeOptionsController extends Controller
      * Update the specified resource in storage.
      *
      * @param \App\Models\EAV\Attribute $attribute
-     * @param \App\Http\Requests\Request $request
+     * @param \App\Http\Requests\Attribute\AttributeOptionRequest $request
      * @param Option $model
      * @return \App\Http\Resources\Attribute\AttributeOptionResource
      */
-    public function update(Attribute $attribute, Request $request, Option $option)
+    public function update(Attribute $attribute, AttributeOptionRequest $request, Option $option)
     {
         $this->ensureOptionBelongsToAttribute($option, $attribute);
 

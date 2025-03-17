@@ -114,7 +114,7 @@ class DatabaseSeeder extends Seeder
         $attributes[] = app('rinvex.attributes.attribute')->updateOrCreate([
             'slug' => 'start_date',
         ], [
-            'description' => 'Start date.',
+            'description' => 'Project start date.',
             'type' => 'date',
             'name' => 'Start date',
             'entities' => [Project::class],
@@ -123,7 +123,7 @@ class DatabaseSeeder extends Seeder
         $attributes[] = app('rinvex.attributes.attribute')->updateOrCreate([
             'slug' => 'end_date',
         ], [
-            'description' => 'End date.',
+            'description' => 'Project end date.',
             'type' => 'date',
             'name' => 'End date',
             'entities' => [Project::class],

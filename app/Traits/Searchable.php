@@ -2,18 +2,18 @@
 
 namespace App\Traits;
 
-use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\Request;
+use Illuminate\Contracts\Database\Query\Builder;
 
-trait ModelHasSearch
+trait Searchable
 {
     /**
      * Filter eloquent query by request params.
      *
      * @param array $filters
      * @param null|array $requestParams
-     * @param null|\Illuminate\Database\Eloquent\Builder $query
-     * @return Builder
+     * @param null|\Illuminate\Contracts\Database\Query\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public static function filter(array $filters, null|array $requestParams, ?Builder $query = null): Builder
     {
@@ -37,8 +37,9 @@ trait ModelHasSearch
      *
      * @param \App\Http\Requests\Request $request
      * @param array $filters
-     * @param null|\Illuminate\Database\Eloquent\Builder $query
-     * @return Builder
+     * @param null|\
+     * @param null|\Illuminate\Contracts\Database\Query\Builder $query $query
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public static function filterByRequest(Request $request, array $filters, ?Builder $query = null): Builder
     {
@@ -51,7 +52,8 @@ trait ModelHasSearch
      * Search model records by given filters.
      *
      * @param null|array $filters
-     * @param mixed $query
+     * @param null|\Illuminate\Contracts\Database\Query\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public static function search(null|array $params, ?Builder $query = null): Builder
     {

@@ -2,12 +2,23 @@
 
 namespace App\Models\EAV;
 
+# models.
 use Rinvex\Attributes\Models\Attribute as VendorAttribute;
 use App\Models\EAV\Type\Common\Option;
+
+# enums.
 use App\Enum\AttributeType;
+
+# eloquent.
+use Illuminate\Database\Eloquent\Builder;
+
+# traits.
+use App\Traits\Searchable;
 
 class Attribute extends VendorAttribute
 {
+    use Searchable;
+
     /**
      * {@inheritDoc}
      */
@@ -24,6 +35,27 @@ class Attribute extends VendorAttribute
     public function options()
     {
         return $this->hasMany(Option::class);
+    }
+
+
+    # search
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function search(null|array $params, ?Builder $query = null): Builder
+    {
+        return static::filter([
+
+            'name'          => fn($q, $value) => $q->where('name', 'like', "%$value%"),
+
+            'slug'          => fn($q, $value) => $q->where('slug', 'like', "%$value%"),
+
+            'type'          => fn($q, $value) => $q->where('type', 'like', "%$value%"),
+
+            'description'   => fn($q, $value) => $q->where('description', 'like', "%$value%"),
+
+        ], $params, $query)->orderBy('id', 'DESC');
     }
 
 
