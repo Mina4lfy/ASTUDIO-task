@@ -47,13 +47,13 @@ class Attribute extends VendorAttribute
     {
         return static::filter([
 
-            'name'          => fn($q, $value) => $q->where('name', 'like', "%$value%"),
+            'name'          => fn($q, $value, $operator) => $q->where('name', $operator, $value),
 
-            'slug'          => fn($q, $value) => $q->where('slug', 'like', "%$value%"),
+            'slug'          => fn($q, $value, $operator) => $q->where('slug', $operator, $value),
 
-            'type'          => fn($q, $value) => $q->where('type', 'like', "%$value%"),
+            'type'          => fn($q, $value, $operator) => $q->where('type', $operator, $value),
 
-            'description'   => fn($q, $value) => $q->where('description', 'like', "%$value%"),
+            'description'   => fn($q, $value, $operator) => $q->where('description', $operator, $value),
 
         ], $params, $query)->orderBy('id', 'DESC');
     }

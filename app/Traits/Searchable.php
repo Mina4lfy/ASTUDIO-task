@@ -2,7 +2,6 @@
 
 namespace App\Traits;
 
-use App\Http\Requests\Request;
 use Illuminate\Contracts\Database\Query\Builder;
 
 trait Searchable
@@ -25,27 +24,19 @@ trait Searchable
 
         foreach ($filters as $column => $callback) {
             if ($value = $requestParams[$column] ?? null) {
-                call_user_func($callback, $query, $value);
+
+                $operator = strtolower($value['operator'] ?? 'like');
+                $search = $value['value'] ?? $value;
+
+                if ($operator === 'like') {
+                    $search = "%$search%";
+                }
+
+                call_user_func($callback, $query, $search, $operator);
             }
         }
 
         return $query;
-    }
-
-    /**
-     * Filter eloquent query by request params
-     *
-     * @param \App\Http\Requests\Request $request
-     * @param array $filters
-     * @param null|\
-     * @param null|\Illuminate\Contracts\Database\Query\Builder $query $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public static function filterByRequest(Request $request, array $filters, ?Builder $query = null): Builder
-    {
-        $filters = (array) ($request->filter ?? []);
-
-        return static::filter($filters, (array) $request->filter ?? [], $query);
     }
 
     /**

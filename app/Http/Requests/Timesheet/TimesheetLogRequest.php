@@ -4,12 +4,9 @@ namespace App\Http\Requests\Timesheet;
 
 use App\Http\Requests\Request as BaseRequest;
 use App\Models\Timesheet\TimesheetLog;
-use App\Traits\RequestAppendsUserId;
 
 class TimesheetLogRequest extends BaseRequest
 {
-    use RequestAppendsUserId;
-
     /**
      * Timesheet log from bound params.
      *
@@ -35,6 +32,16 @@ class TimesheetLogRequest extends BaseRequest
         return ($this->timesheetLog = $this->route('timesheetLog'))
             ? $this->timesheetLog->user_id === $user->id // Updating an existing timesheet log.
             : !$this->project_id || $user->isAssignedToProject($this->project_id); // Creating a new timesheet log.
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function prepareForValidation(): void
+    {
+        parent::prepareForValidation();
+
+        $this->merge(['user_id' => $this->user()?->id]);
     }
 
     /**

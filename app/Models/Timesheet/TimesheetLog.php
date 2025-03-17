@@ -10,8 +10,8 @@ use App\Models\Project\Project;
 # traits
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-# eloquent
-use Illuminate\Database\Eloquent\Builder;
+# eloquent.
+use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class TimesheetLog extends BaseModel
@@ -52,17 +52,17 @@ class TimesheetLog extends BaseModel
     {
         return static::filter([
 
-            'project_id'    => fn($q, $id) => $q->where('project_id', $id),
+            'project_id'    => fn($q, $value, $operator) => $q->where('project_id', $operator, $value),
 
-            'user_id'       => fn($q, $id) => $q->where('user_id', $id),
+            'user_id'       => fn($q, $value, $operator) => $q->where('user_id', $operator, $value),
 
-            'task_name'     => fn($q, $value) => $q->where('task_name', 'like', "%$value%"),
+            'task_name'     => fn($q, $value, $operator) => $q->where('task_name', $operator, $value),
 
-            'hours'         => fn($q, $value) => $q->where('hours', $value),
+            'hours'         => fn($q, $value, $operator) => $q->where('hours', $operator, $value),
 
-            'date'          => fn($q, $value) => $q->where('date', 'like', "%$value%"),
+            'date'          => fn($q, $value, $operator) => $q->where('date', $operator, $value),
 
-            'created_at'    => fn($q, $value) => $q->where('created_at', 'like', "%$value%"),
+            'created_at'    => fn($q, $value, $operator) => $q->where('created_at', $operator, $value),
 
         ], $params, $query)->orderBy('id', 'DESC');
     }

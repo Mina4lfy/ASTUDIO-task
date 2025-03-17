@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Traits\PaginatedRequest;
+use App\Traits\PaginatableRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class Request extends FormRequest
 {
-    use PaginatedRequest;
+    use PaginatableRequest;
 
     /**
      * Determine if the user is authorized to make this request.
@@ -35,7 +35,7 @@ class Request extends FormRequest
     {
         parent::prepareForValidation();
 
-        $this->preparePaginatedRequestForValidation();
+        $this->preparePaginatableRequestForValidation();
     }
 
     /**
@@ -45,7 +45,7 @@ class Request extends FormRequest
      */
     public function rules(): array
     {
-        return $this->getPaginatedRequestRules();
+        return $this->getPaginatableRequestRules();
     }
 
     /**

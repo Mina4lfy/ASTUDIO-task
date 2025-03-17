@@ -70,18 +70,18 @@ class Project extends BaseModel
     {
         return static::filter([
 
-            'name'          => fn($q, $value) => $q->where('name', 'like', "%$value%"),
+            'name'          => fn($q, $value, $operator) => $q->where('name', $operator, $value),
 
-            'status'        => fn($q, $value) => $q->where('status', 'like', "%$value%"),
+            'status'        => fn($q, $value, $operator) => $q->where('status', $operator, $value),
 
             # Filter by department name or id.
-            'department'    => fn($q, $value) => is_numeric($value)
-                ? $q->whereHas('department', fn ($subQ) => $subQ->where('content', $value))
-                : $q->whereHas('department', fn ($subQ) => $subQ->whereHas('option', fn ($subSubQ) => $subSubQ->where('content', 'like', "%$value%"))),
+            'department'    => fn($q, $value, $operator) => is_numeric($value)
+                ? $q->whereHas('department', fn ($subQ) => $subQ->where('content', $operator, $value))
+                : $q->whereHas('department', fn ($subQ) => $subQ->whereHas('option', fn ($subSubQ) => $subSubQ->where('content', $operator, $value))),
 
-            'start_date'    => fn($q, $value) => $q->whereHas('start_date', fn($subQ) => $subQ->where('content', 'like', "%$value%")),
+            'start_date'    => fn($q, $value, $operator) => $q->whereHas('start_date', fn($subQ) => $subQ->where('content', $operator, $value)),
 
-            'end_date'      => fn($q, $value) => $q->whereHas('end_date', fn($subQ) => $subQ->where('content', 'like', "%$value%")),
+            'end_date'      => fn($q, $value, $operator) => $q->whereHas('end_date', fn($subQ) => $subQ->where('content', $operator, $value)),
 
         ], $params, $query)->orderBy('id', 'DESC');
     }

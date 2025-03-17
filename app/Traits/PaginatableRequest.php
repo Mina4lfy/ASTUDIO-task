@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-trait PaginatedRequest
+trait PaginatableRequest
 {
     /**
      * Default `per_page` if not provided in the request
@@ -16,7 +16,7 @@ trait PaginatedRequest
      * 
      * @return void
      */
-    protected function preparePaginatedRequestForValidation()
+    protected function preparePaginatableRequestForValidation()
     {
         $this->merge([
             'page' => $this->page ?? 1,
@@ -29,7 +29,7 @@ trait PaginatedRequest
      *
      * @return array
      */
-    protected function getPaginatedRequestRules()
+    protected function getPaginatableRequestRules()
     {
         return [
             'page' => [
