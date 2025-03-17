@@ -12,6 +12,11 @@ enum ProjectStatus: string
 
     case ARCHIVED = 'archived';
 
+    /**
+     * List all attribute types. (machine name => class name)
+     *
+     * @return string[]
+     */
     public static function list(): array
     {
         $cases = [];
@@ -23,6 +28,11 @@ enum ProjectStatus: string
         return $cases;
     }
 
+    /**
+     * Get the attribute type validation rule.
+     *
+     * @return string
+     */
     public static function validationRule(): string
     {
         return 'in:' . implode(',', static::list());

@@ -4,6 +4,7 @@ namespace App\Models\EAV;
 
 use Rinvex\Attributes\Models\Attribute as VendorAttribute;
 use App\Models\EAV\Type\Common\Option;
+use App\Enum\AttributeType;
 
 class Attribute extends VendorAttribute
 {
@@ -14,15 +15,7 @@ class Attribute extends VendorAttribute
     {
         parent::boot();
 
-        Attribute::typeMap([
-            'text'      => \Rinvex\Attributes\Models\Type\Text::class,
-            'boolean'   => \Rinvex\Attributes\Models\Type\Boolean::class,
-            'integer'   => \Rinvex\Attributes\Models\Type\Integer::class,
-            'varchar'   => \Rinvex\Attributes\Models\Type\Varchar::class,
-            'datetime'  => \Rinvex\Attributes\Models\Type\Datetime::class,
-            'date'      => \App\Models\EAV\Type\Date::class,
-            'select'    => \App\Models\EAV\Type\Select::class,
-        ]);
+        Attribute::typeMap(AttributeType::list());
     }
 
 
