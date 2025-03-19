@@ -62,7 +62,7 @@ After the installation script is finished, copy the client id and secret to your
 ## #2 API Documentation
 
 I am not a Swagger fan! You can import the Postman collection from `docs/postman/postman-collection.json` and environment, `docs/postman/postman-environment.json`.<br/>
-Documentation is accessible at <a href="https://documenter.getpostman.com/view/40194412/2sAYkBtMtV">https://documenter.getpostman.com/view/40194412/2sAYkBtMtV</a>.
+Documentation is accessible at <a href="https://documenter.getpostman.com/view/43226766/2sAYkEpKVH">https://documenter.getpostman.com/view/43226766/2sAYkEpKVH</a>.
 
 In the collection, you will find example requests/responses for:
 - issuing/revoking access tokens using Laravel Passport.
